@@ -1,1 +1,6 @@
-console.log('say hello')
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hi compilers...!'
+  }
+})

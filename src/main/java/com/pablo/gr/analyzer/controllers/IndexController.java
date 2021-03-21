@@ -9,6 +9,6 @@ public class IndexController {
 	@GetMapping({"/index", "/", "/#/analyzer" })
 	public String index() {  
 		return "index.html";
-	}
-	 
+	}  
+	   
 }
