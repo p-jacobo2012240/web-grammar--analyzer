@@ -1,6 +1,15 @@
 package com.pablo.gr.analyzer.controllers;
 
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,16 +21,29 @@ import org.springframework.web.multipart.MultipartFile;
 public class AnalyzerController {
 
 	@PostMapping("/upload/file")
-	public ResponseEntity<Object> uploadFileTxT(@RequestParam("filetxt") MultipartFile fileTxt  ){
-		if(!fileTxt.isEmpty()) {
+	public ResponseEntity<Object> uploadFileTxT(@RequestParam("filetxt") MultipartFile fileTxt) {
+		if (!fileTxt.isEmpty()) {
+			BufferedReader bufferedReader;
+			List<String> resultList = new ArrayList<>();
 			try {
-				System.out.println(" content "+  fileTxt.getInputStream().toString());
+				String line;
+				InputStream inputStream = fileTxt.getInputStream();
+				bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+				// setting data into string list
+				while ((line = bufferedReader.readLine()) != null) {
+					resultList.add(line);
+				}
+				
+				// read line...
+				for(String letter: resultList) {
+					System.out.println("line " + letter );
+				}
+
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();  
+				System.err.println(e.getMessage());
 			}
 		}
 		return null;
 	}
-	
+
 }
