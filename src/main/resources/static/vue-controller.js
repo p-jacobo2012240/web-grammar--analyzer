@@ -1,4 +1,5 @@
 // https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch
+// https://serversideup.net/uploading-files-vuejs-axios/
 var app = new Vue({
 	el: '#app',
 	data: {
