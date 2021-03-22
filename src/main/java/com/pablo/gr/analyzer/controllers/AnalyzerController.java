@@ -18,7 +18,7 @@ public class AnalyzerController {
 				System.out.println(" content "+  fileTxt.getInputStream().toString());
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				e.printStackTrace();  
 			}
 		}
 		return null;

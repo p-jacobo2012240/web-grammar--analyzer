@@ -7,7 +7,9 @@
 </head>
 <body>
 	<div id="app">
-  		{{ message }}
+		<label>{{ message }}</label><br>  
+		<input type="file" ref="file"  v-on:change="handleFileUpload()" /><br>  
+		<button v-on:click="submitFile()">Subir txt</button>
 	</div>
 </body>
 <script th:src="@{vue-controller.js}"></script>
