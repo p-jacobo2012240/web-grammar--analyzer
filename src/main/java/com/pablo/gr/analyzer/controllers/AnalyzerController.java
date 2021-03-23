@@ -35,7 +35,7 @@ public class AnalyzerController {
 					resultList.add(line);
 				}  
 				
-				// read line...
+				// read line... 
 				for(String letter: resultList) {
 					this.logger.info("line -- > " + letter );   
 				}
