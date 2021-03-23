@@ -10,10 +10,25 @@ var app = new Vue({
 		handleFileUpload() {
 			this.file = this.$refs.file.files[0];
 		},
-		submitFile(){
+		submitFile() {
 			let formData = new FormData();
-            formData.append('file', this.file);
-			console.log('item ', formData )
+			formData.append('filetxt', this.file);
+
+			//send data into file
+			axios.post('http://localhost:8080/upload/file',
+				formData,
+				{
+					headers: {
+						'Content-Type': 'multipart/form-data'
+					}
+				}
+			).then(function() {
+				console.log('SUCCESS!!');
+			})
+				.catch(function() {
+					console.log('FAILURE!!');
+				});
+
 		}
 	}
 });
