@@ -14,20 +14,19 @@ var app = new Vue({
 			let formData = new FormData();
 			formData.append('filetxt', this.file);
 
-			//send data into file
-			axios.post('http://localhost:8080/upload/file',
-				formData,
-				{
-					headers: {
-						'Content-Type': 'multipart/form-data'
-					}
-				}
-			).then(function() {
-				console.log('SUCCESS!!');
+			fetch('http://localhost:8080/upload/file', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'multipart/form-data',
+				},
+				body: formData
 			})
-				.catch(function() {
-					console.log('FAILURE!!');
-				});
+				.then(response => response.json())
+				.then(data => {
+					console.log('Success:', data);
+				})
+
+
 
 		}
 	}
