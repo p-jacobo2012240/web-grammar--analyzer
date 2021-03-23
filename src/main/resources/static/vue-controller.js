@@ -12,9 +12,16 @@ var app = new Vue({
 		},
 		submitFile() {
 			let formData = new FormData();
-			formData.append('filetxt', this.file);
+			// formData.append('filetxt', this.file);
+			
+			
 
-			fetch('http://localhost:8080/upload/file', {
+			//console.log('logs ', formData ); // key1 = value1, then key2 = value2
+		
+
+
+			//call api
+			/*fetch('http://localhost:8080/upload/file', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'multipart/form-data',
@@ -24,7 +31,7 @@ var app = new Vue({
 				.then(response => response.json())
 				.then(data => {
 					console.log('Success:', data);
-				})
+				})*/
 
 
 
