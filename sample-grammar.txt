@@ -1,8 +1,1 @@
-hola 
-esto 
-es 
-una
-demo
-hola
-sam
-foo
+S=S'+'T|T
