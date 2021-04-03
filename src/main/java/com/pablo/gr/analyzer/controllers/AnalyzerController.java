@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.pablo.gr.analyzer.engines.MainEngine;
 
 @RestController
 public class AnalyzerController {
@@ -35,10 +36,8 @@ public class AnalyzerController {
 					resultList.add(line);
 				}  
 				
-				// read line... 
-				for(String letter: resultList) {
-					this.logger.info("line -- > " + letter );   
-				}
+				// set data to main engine 
+				MainEngine.getInstance().processTxtFile(resultList);
 
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
