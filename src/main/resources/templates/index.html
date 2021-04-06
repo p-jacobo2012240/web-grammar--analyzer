@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8"/>
+<meta charset="UTF-8" />
 <title>Insert title here</title>
-	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-	<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-	<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link href="main.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<link
+	href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+	rel="stylesheet">
+<script
+	src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link href="main.css" rel="stylesheet">
 </head>
 <body>
-	<div id="app" class="dash-analyzer" >
-		<label>{{ message }}</label><br>  
-		<input type="file" ref="file"  v-on:change="handleFileUpload()" /><br>  
-		<button v-on:click="submitFile()">Subir txt</button>
+	<div id="app" class="dash-analyzer">
+
+		<div class="mdc-layout-grid">
+			<div class="mdc-layout-grid__inner">
+				<div class="mdc-layout-grid__cell">First level</div>
+				<div class="mdc-layout-grid__cell">First level</div>
+			</div>
+		</div>
+		<div class="mdc-layout-grid">
+			<div class="mdc-layout-grid__inner">
+				<div class="mdc-layout-grid__cell">send message </div>
+			</div>
+		</div>
+		
+
 	</div>
 </body>
 <script th:src="@{vue-controller.js}"></script>
-</html>  
+</html>
