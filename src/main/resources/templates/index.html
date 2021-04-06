@@ -27,11 +27,17 @@
 			<!-- text file grid -->
 			<div class="row">
 				<div class="col">
-					<div class="size-txt-outputs"></div>
+					<div class="size-txt-outputs">
+						
+					</div>
 				</div>
 				<div class="w-100"></div>
 				<div class="col">
-					<div class="size-txt-outputs"></div>
+					<div class="size-txt-outputs">
+						<div class="cnt-message d-flex justify-content-center">
+							<p>Sin Recursividad</p>
+						</div>
+					</div>
 				</div>
 			</div>
 			<!-- text file grid  -->
@@ -39,24 +45,40 @@
 			<div class="grid-var-and-terms">
 				<!--  variables -->
 				<div class="variables-list-cnt">
-					<div class="header-variable d-flex justify-content-center" ><b>V</b></div>
-						
+					<div class="header-variable d-flex justify-content-center">
+						<b>V</b>
+					</div>
 				</div>
 				<!--  variables  -->
 				<!--  terminals  -->
-				<div class="terminals-list-cnt" >
-					<div class="header-terminal d-flex justify-content-center"><b>T</b></div>
+				<div class="terminals-list-cnt">
+					<div class="header-terminal d-flex justify-content-center">
+						<b>T</b>
+					</div>
 				</div>
 				<!--  terminals  -->
 			</div>
 			<!-- variables and terminals grid  -->
 			<!-- variables and productions grid  -->
-			<div class="grid-var-and-productions"></div>
+			<div class="grid-var-and-productions">
+				<!--  variables -->
+				<div class="variables-list-cnt-procressed">
+					<div class="header-variable d-flex justify-content-center">
+						<b>V</b>
+					</div>
+				</div>
+				<!--  variables  -->
+				<!--  productions -->
+				<div class="production-list-cnt-procressed">
+					<div class="header-production d-flex justify-content-center">
+						<b>P</b>
+					</div>
+				</div>
+				<!--  productions  -->
+			</div>
 			<!-- variables and productions grid  -->
 		</div>
 		<!-- data container  -->
-
-
 	</div>
 </body>
 <script th:src="@{vue-controller.js}"></script>
