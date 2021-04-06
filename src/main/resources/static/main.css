@@ -1,30 +1,9 @@
 @charset "ISO-8859-1";
 
 .dash-analyzer {   
-    width: 400px;
+    width: 600px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.mdl-grid {
-  padding: 0!important;
-}
-
-.mdl-cell {
-  box-sizing: border-box;
-  background-color: #BDBDBD;
-  height: 100px;
-  padding-left: 8px;
-  padding-top: 4px;
-  color: white;
-}
-
-.mdl-cell--1-col {
-	background-color: #26C6DA;
-}
-
-.mdl-cell--4-col {
-	background-color: #66BB6A;
 }

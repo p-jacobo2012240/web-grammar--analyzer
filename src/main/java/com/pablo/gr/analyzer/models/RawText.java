@@ -11,3 +11,4 @@ public class RawText {
 		this.line = line;
 	}
 }
+ 
