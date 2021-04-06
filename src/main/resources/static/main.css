@@ -7,3 +7,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.btn-send-txt {
+	background-color: rgb(242, 242, 242) !important;
+}
+
+.size-txt-outputs {
+	width: 200px;
+	height: 200px;
+	border-style: solid;
+  	border-color: rgb(242, 242, 242);
+}
