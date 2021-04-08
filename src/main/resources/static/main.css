@@ -13,9 +13,26 @@
 	background-color: rgb(242, 242, 242) !important;
 }
 
+
+.scroll-y-position {
+	overflow-y: scroll;
+}
+
+
 .cnt-message {
 	height: 25px;
 	background-color: rgb(242, 242, 242) !important;
+}
+
+.non-bullets {
+	 list-style-type: none;
+}
+
+
+.nano {
+	font-style: normal;
+	font-size: 15px;
+	font-weight: 400;
 }
 
 .size-txt-outputs {
