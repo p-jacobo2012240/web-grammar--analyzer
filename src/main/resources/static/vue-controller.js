@@ -1,8 +1,10 @@
 const app = new Vue({
 	el: '#app',
-	data: {
-		file: null,
-		message: 'cargue su archivo txt'
+	  data () {
+		return {
+			file: null,
+			message: 'cargue su archivo txt'	
+		}
 	},
 	methods: {
 		handleFileUpload() {
