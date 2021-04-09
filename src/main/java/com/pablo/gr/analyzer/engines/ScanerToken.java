@@ -24,14 +24,14 @@ public class ScanerToken {
 		Map<String, Object> resultEval = new HashMap<>();
 
 		fileStruct.stream().forEach(strTkn -> {
-			System.out.println("element feach " + this.splitedToken(strTkn));
-			System.out.println("*************************************");
+			Map<String, Object>  mapResults = this.splitedToken(strTkn);
+			System.out.println("val " +   mapResults  );
 		});
 
 		return resultEval;
 	}
 
-	public String splitedToken(String currentToken) {
+	public Map<String, Object> splitedToken(String currentToken) {
 		String[] splCurrentToken = currentToken.split("");
 		Stack<String> stackTokenChar = new Stack<>();
 
@@ -41,7 +41,6 @@ public class ScanerToken {
 		
 		this.objByToken.put("variable", stackTokenChar.firstElement());
 		
-	
 		List<String> stackFiltered = stackTokenChar
 			.stream()
 			.filter(tkn -> !tkn.equals(stackTokenChar.firstElement()))
@@ -50,17 +49,9 @@ public class ScanerToken {
 			.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK))
 			.collect(Collectors.toList());
 		
-		
-		for(String xx : stackFiltered ) {
-			System.out.println("valll "+ xx );
-		}
-	
-		
+		this.objByToken.put("terminalList", stackFiltered);
 
-	   
-	
-
-		return " ";
+		return this.objByToken;
 	}
 
 }
