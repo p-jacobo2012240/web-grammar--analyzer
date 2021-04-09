@@ -1,9 +1,14 @@
+// setting default values before uploading the file 
+let defaultProps = {
+	rawTextList: [{ line: '' }]
+}
+
 const app = new Vue({
 	el: '#app',
 	  data () {
 		return {
 			file: null,
-			grammarItem: null
+			grammarItem: defaultProps
 		}
 	},
 	methods: {
