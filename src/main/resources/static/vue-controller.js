@@ -3,7 +3,7 @@ const app = new Vue({
 	  data () {
 		return {
 			file: null,
-			message: 'cargue su archivo txt'	
+			grammarItem: null
 		}
 	},
 	methods: {
