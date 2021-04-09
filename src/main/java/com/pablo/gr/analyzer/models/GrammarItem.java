@@ -3,8 +3,15 @@ package com.pablo.gr.analyzer.models;
 import java.util.List;
 
 public class GrammarItem {
+	/*
+	 * this is the final wrapper 
+	 * that contains the object to 
+	 * show in the frontend made with vue 
+	*/
 	private List<RawText> rawTextList;
 	private List<WithoutRecursivityText> withoutRecursivityTextList;
+	
+	public GrammarItem() {}
 	
 	public GrammarItem(List<RawText> rawTextList) {
 		super();

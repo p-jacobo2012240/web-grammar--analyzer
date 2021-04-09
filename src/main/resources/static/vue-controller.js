@@ -21,6 +21,7 @@ const app = new Vue({
 			})
 			   .then(response => response.json())
 			   .then(data => {
+					this.grammarItem = data;
 					console.log('Success:', data);
 				});
 		}

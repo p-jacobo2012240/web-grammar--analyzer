@@ -5,6 +5,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.pablo.gr.analyzer.models.GrammarItem;
+import com.pablo.gr.analyzer.models.RawText;
+import com.pablo.gr.analyzer.engines.ParserFromPlainList;
+
 
 public class MainEngine {
 	private static MainEngine instance; 
@@ -17,10 +21,17 @@ public class MainEngine {
 		return instance;
 	}
 	
-	public void processTxtFile(List<String> fileStruct) {
-		for(String element: fileStruct) {
-			this.logger.info("char --> "+ element );
-		}
+	public GrammarItem processTxtFile(List<String> fileStruct) {
+		GrammarItem grammarItem = new GrammarItem();
+		
+		grammarItem.setRawTextList(
+				ParserFromPlainList
+				.getInstance()
+				.fromStringToRawTextList(fileStruct)
+		);
+		
+	
+		return grammarItem;
 	}
 	
 	
