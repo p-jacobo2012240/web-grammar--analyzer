@@ -16,7 +16,7 @@ public class ParserFromPlainList {
 		return instance;
 	}
 	
-	/*
+	/**
 	 * parse simple token string to List<RawText> 
 	 * 
 	 * @param List<String> 

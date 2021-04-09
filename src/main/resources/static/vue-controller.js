@@ -1,7 +1,7 @@
 // setting default values before uploading the file 
 let defaultProps = {
 	rawTextList: [{ line: '' }]
-}
+};
 
 const app = new Vue({
 	el: '#app',
