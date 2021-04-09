@@ -18,7 +18,7 @@ const app = new Vue({
 		submitFile() {
 			let formData = new FormData();
 			formData.append('file', this.file );
-
+			
 			//call api
 			fetch('http://localhost:8080/upload/file', {
 				method: 'POST',

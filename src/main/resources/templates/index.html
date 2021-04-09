@@ -16,7 +16,11 @@
 	<div id="app" class="dash-analyzer">
 		<!-- upload file -->
 		<div class="container">
-			<input type="file" ref="file" v-on:change="handleFileUpload()" /><br>
+			<input 
+				type="file" 
+				ref="file"
+				v-on:change="handleFileUpload()" 
+			/><br>
 		</div>
 		<div class="d-grid gap-2">
 			<button v-on:click="submitFile()" class="btn btn-light btn-send-txt"
