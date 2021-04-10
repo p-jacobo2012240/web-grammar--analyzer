@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pablo.gr.analyzer.engines.ParserFromPlainList;
+import com.pablo.gr.analyzer.engines.MainEngine;
 import com.pablo.gr.analyzer.models.GrammarItem;
 
 @RestController
@@ -24,6 +27,7 @@ public class AnalyzerController {
 	
 	private Logger logger = LoggerFactory.getLogger(AnalyzerController.class);
 	private GrammarItem grammarEntity = new GrammarItem();
+	private Map<String, Object> responseError = new HashMap<>();
 	
 	@PostMapping("/upload/file")
 	public ResponseEntity<Object> uploadFileTxT(@RequestParam("file") MultipartFile fileTxt) {
@@ -42,13 +46,18 @@ public class AnalyzerController {
 				this.logger.warn("size list = " + resultList.size() );
 				
 				// first analysis of the list of values
-				ParserFromPlainList.getInstance().verificationofIntegrityInList(resultList);
+				Map<String, Object> resultMap = ParserFromPlainList.getInstance().verificationofIntegrityInList(resultList);
+				Object statusMap = resultMap.get("status");
+				boolean resultExp = Boolean.valueOf(statusMap.toString());
 				
-				
-				
-				// set data to main engine 
-				// this.grammarEntity =  MainEngine.getInstance().processTxtFile(resultList);
-
+				if (resultExp) {
+					// set data to main engine 
+					this.grammarEntity =  MainEngine.getInstance().processTxtFile(resultList);
+				} else {
+					this.logger.warn("LA CADENA ESTA CORROMPIDA.....");
+					this.responseError.put("status", false);
+					return new ResponseEntity<Object>(this.responseError, HttpStatus.INTERNAL_SERVER_ERROR);
+				}
 			} catch (IOException e) {
 				System.err.println(e.getMessage());
 			}

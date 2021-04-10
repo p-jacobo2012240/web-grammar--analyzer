@@ -12,10 +12,9 @@ import com.pablo.gr.analyzer.utils.SyntaxCharacters;
 
 public class ParserFromPlainList {
 	private static ParserFromPlainList instance;
-	private SyntaxCharacters syntaxCharacters = new SyntaxCharacters();
-	boolean integrityChain = true;;
+	boolean integrityChain = true;
+	private int counterValidChain = 0;
 	private Map<String, Object> configMap = new HashMap<>();
-	
 
 	public static ParserFromPlainList getInstance() {
 		if (instance == null) {
@@ -47,36 +46,41 @@ public class ParserFromPlainList {
 	 * 
 	 */
 	public Map<String, Object> verificationofIntegrityInList(List<String> strList) {
-		 strList.stream().forEach(valueT -> {
-			 String[] splValue = valueT.split("");
-			 List<String> stackValidations = new ArrayList<>();
-			      
-			 for(String vl: splValue) {
-				 stackValidations.add(vl);
-			 }
-			 
-			 System.out.println("tamanio " + strList.size());
-			 
-			 if( stackValidations.contains("â") || stackValidations.contains("€") || stackValidations.contains("™")) {
-				 System.out.println("cadena invalida....");
-				 this.integrityChain = false;
-			 } else {
-				 if (strList.size() >= 1 ) {
-					 System.out.println("cadena limpia... " + valueT );
-				 } else {
-					 System.out.println("archivo en blanco....");
-				 }
-			 }
- 			 
-			 
-			 			 
-		
-					 
-	
-		 });
-		
+		strList.stream().forEach(valueT -> {
+			String[] splValue = valueT.split("");
+			List<String> stackValidations = new ArrayList<>();
 
-		return configMap;
+			for (String vl : splValue) {
+				stackValidations.add(vl);
+			}
+
+			if (stackValidations.contains("â") || stackValidations.contains("€") || stackValidations.contains("™")) {
+				System.out.println("cadena invalida....");
+				this.integrityChain = false;
+			} else {
+				if(valueT.contains("=")) {
+					String[] parts = valueT.split("=");
+					String part_1 = parts[0];
+					String part_2 = parts[1];
+					
+					if (part_1.length() >= 1 && part_2.length() >=1) {
+						this.integrityChain = true;
+						this.counterValidChain++;
+					}
+				} else {
+					this.configMap.put("status", false);
+					System.out.println("NOOOO contiene el signo = " );
+				}  
+			}
+		});
+
+		if (this.integrityChain && (this.counterValidChain >= 1)) {
+			this.configMap.put("status", true);
+			System.out.println("todo biennn");
+			this.counterValidChain = 0;
+		}
+
+		return this.configMap;
 	}
 
 }

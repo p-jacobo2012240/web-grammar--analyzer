@@ -28,7 +28,7 @@ const app = new Vue({
 			})
 				.then(response => response.json())
 				.then(data => {
-					this.grammarItem = data;
+					this.grammarItem = data; /// fixed tomorrow
 					console.log('Success:', data);
 				});
 		}
