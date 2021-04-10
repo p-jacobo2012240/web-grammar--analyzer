@@ -18,6 +18,8 @@ public class ScanerToken {
 	private SyntaxCharacters syntaxCharacters = new SyntaxCharacters();
 	private List<Terminals> terminalList = new ArrayList<>();
 	private List<Variables> variablesList = new ArrayList<>();
+	//dummy val
+	private List<Variables> variablesListDummy = new ArrayList<>();
 
 	public static ScanerToken getInstance() {
 		if (instance == null) {
@@ -84,6 +86,17 @@ public class ScanerToken {
 		//clear pile
 		stackTokenChar.clear();
 		return this.objByToken;
+	}
+	
+	// generate dummy productions
+	public List<Variables> getDummyProductions(List<Variables> variablesList ) {
+		List<Variables> dummyList = new ArrayList<>();
+		
+		for(Variables dummy: variablesList ) {
+			this.variablesListDummy.add(new Variables("-"));
+		}
+		
+		return dummyList;
 	}
 
 }

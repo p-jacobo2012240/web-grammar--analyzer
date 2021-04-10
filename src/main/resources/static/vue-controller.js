@@ -2,7 +2,9 @@
 let defaultProps = {
 	rawTextList: [{ line: '' }],
 	variablesList: [{ character: '' }],
-	terminalsList: [{ character: '' }]
+	terminalsList: [{ character: '' }],
+	variablesListComplex: [{ character: '' }],
+	terminalsListComplex: [{ character: '' }]
 };
 
 const app = new Vue({
@@ -28,7 +30,7 @@ const app = new Vue({
 			})
 				.then(response => response.json())
 				.then(data => {
-					this.grammarItem = data; /// fixed tomorrow
+					this.grammarItem = data; 
 					console.log('Success:', data);
 					
 					if(data.status !== undefined ) {

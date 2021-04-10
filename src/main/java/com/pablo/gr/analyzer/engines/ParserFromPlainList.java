@@ -67,7 +67,7 @@ public class ParserFromPlainList {
 						this.integrityChain = true;
 						this.counterValidChain++;
 					}
-				} else {
+				} else {       
 					this.configMap.put("status", false);
 					System.out.println("NOOOO contiene el signo = " );
 				}  
