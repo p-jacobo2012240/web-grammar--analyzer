@@ -18,8 +18,9 @@ public class ScanerToken {
 	private SyntaxCharacters syntaxCharacters = new SyntaxCharacters();
 	private List<Terminals> terminalList = new ArrayList<>();
 	private List<Variables> variablesList = new ArrayList<>();
-	//dummy val
+	//dummy values
 	private List<Variables> variablesListDummy = new ArrayList<>();
+	private List<Variables> variablesListDummyvars = new ArrayList<>();
 
 	public static ScanerToken getInstance() {
 		if (instance == null) {
@@ -97,6 +98,18 @@ public class ScanerToken {
 		}
 	
 		return this.variablesListDummy;
+	}
+	
+	public List<Variables> getDummyProductionsVars(List<Variables> variablesList ) {
+		this.variablesListDummyvars.clear();
+		
+		
+		for (Variables varls: variablesList ) {
+			this.variablesListDummyvars.add(new Variables(varls.getCharacter()));
+			this.variablesListDummyvars.add(new Variables(varls.getCharacter()));
+		}
+	
+		return this.variablesListDummyvars;
 	}
 
 }
