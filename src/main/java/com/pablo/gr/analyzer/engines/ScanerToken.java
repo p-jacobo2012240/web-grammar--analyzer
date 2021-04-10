@@ -8,6 +8,7 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 
 import com.pablo.gr.analyzer.utils.SyntaxCharacters;
+import com.pablo.gr.analyzer.models.GrammarItem;
 import com.pablo.gr.analyzer.models.Terminals;
 import com.pablo.gr.analyzer.models.Variables;
 
@@ -24,28 +25,34 @@ public class ScanerToken {
 		}
 		return instance;
 	}
-
-	public Map<String, Object> evaluateToken(List<String> fileStruct) {
-		Map<String, Object> resultEval = new HashMap<>();
-
+  
+	public GrammarItem evaluateToken(List<String> fileStruct) {
+		variablesList.clear();
+		terminalList.clear();
+		
 		fileStruct.stream().forEach(strTkn -> {
 			Map<String, Object> mapResults = this.splitedToken(strTkn);
 			Object mapVariableValue = mapResults.get("variable");
 			Variables tmpElement = (Variables) mapVariableValue;
-			
+
 			boolean isValid = true;
-			isValid = this.variablesList.stream()
-					.anyMatch(var -> var.getCharacter().equals(tmpElement.getCharacter()));
-			
-			if(!isValid) {
-				this.variablesList.add( new Variables(tmpElement.getCharacter()));
+			isValid = variablesList.stream().anyMatch(var -> var.getCharacter().equals(tmpElement.getCharacter()));
+
+			if (!isValid) {
+				variablesList.add(new Variables(tmpElement.getCharacter()));
 				isValid = true;
 			}
 		});
-		for(Variables val:  this.variablesList) {
-			 System.out.println("values... " + val.getCharacter() );
-		 }
-		return resultEval;
+
+		// validate that a character of the variables is not passed as it is a
+		// derivation
+		variablesList.stream().forEach(var -> {
+			String element = var.getCharacter();
+			terminalList.removeIf(val -> val.getCharacter().equals(element));
+		});
+
+		GrammarItem grammarItemLists = new GrammarItem(variablesList, terminalList, "lists");
+		return grammarItemLists;
 	}
 
 	public Map<String, Object> splitedToken(String currentToken) {
@@ -58,7 +65,7 @@ public class ScanerToken {
 
 		Variables var = new Variables(stackTokenChar.firstElement());
 		this.objByToken.put("variable", var);
-
+         
 		List<String> stackFiltered = stackTokenChar.stream().filter(tkn -> !tkn.equals(stackTokenChar.firstElement()))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK_SIMPLE))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EQUAL_SIGN))
@@ -66,12 +73,16 @@ public class ScanerToken {
 				.filter(tkn -> !tkn.equals(syntaxCharacters.PIPE))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.T_IN_CHAIN))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.F_IN_CHAIN))
-				.filter(tkn -> !tkn.equals(syntaxCharacters.EPSILON)).collect(Collectors.toList());
+				.filter(tkn -> !tkn.equals(syntaxCharacters.EPSILON))
+				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK_INVERSE))
+				.filter(tkn -> !tkn.equals(syntaxCharacters.EMPTY_SPACE)).collect(Collectors.toList());
 
 		stackFiltered.stream().forEach(terminalValue -> {
 			this.terminalList.add(new Terminals(terminalValue));
 		});
-
+		
+		//clear pile
+		stackTokenChar.clear();
 		return this.objByToken;
 	}
 

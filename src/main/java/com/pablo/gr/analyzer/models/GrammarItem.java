@@ -10,9 +10,43 @@ public class GrammarItem {
 	*/
 	private List<RawText> rawTextList;
 	private List<WithoutRecursivityText> withoutRecursivityTextList;
+	// using for create variables and terms [simple]
+	private List<Variables> variablesList;
+	private List<Terminals> terminalsList;
+	private String simpleFalg;
 	
+	
+	public List<Variables> getVariablesList() {
+		return variablesList;
+	}
+
+
+	public void setVariablesList(List<Variables> variablesList) {
+		this.variablesList = variablesList;
+	}
+
+
+	public List<Terminals> getTerminalsList() {
+		return terminalsList;
+	}
+
+
+	public void setTerminalsList(List<Terminals> terminalsList) {
+		this.terminalsList = terminalsList;
+	}
+
+
 	public GrammarItem() {}
 	
+	
+	public GrammarItem(List<Variables> variablesList, List<Terminals> terminalsList, String simpleFalg) {
+		super();
+		this.variablesList = variablesList;
+		this.terminalsList = terminalsList;
+		this.simpleFalg = simpleFalg;
+	}
+
+
 	public GrammarItem(List<RawText> rawTextList) {
 		super();
 		this.rawTextList = rawTextList;
@@ -37,6 +71,15 @@ public class GrammarItem {
 	public void setWithoutRecursivityTextList(List<WithoutRecursivityText> withoutRecursivityTextList) {
 		this.withoutRecursivityTextList = withoutRecursivityTextList;
 	} 
+	
+	public String getSimpleFalg() {
+		return simpleFalg;
+	}
+
+
+	public void setSimpleFalg(String simpleFalg) {
+		this.simpleFalg = simpleFalg;
+	}
 	
 	
 	

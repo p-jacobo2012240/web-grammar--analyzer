@@ -8,4 +8,6 @@ public class SyntaxCharacters {
 	public final String T_IN_CHAIN = "T";
 	public final String F_IN_CHAIN = "F";
 	public final String EPSILON = "e";
+	public final String QUOTATION_MARK_INVERSE = "‘";
+	public final String EMPTY_SPACE = " ";
 }

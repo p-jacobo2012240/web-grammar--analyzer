@@ -20,12 +20,13 @@ public class MainEngine {
 		}
 		return instance;
 	}
-	
+	  
 	public GrammarItem processTxtFile(List<String> fileStruct) {
 		GrammarItem grammarItem = new GrammarItem();
 		
 		
-		ScanerToken.getInstance().evaluateToken(fileStruct);
+		GrammarItem listVariablesAndTerminals = ScanerToken
+				.getInstance().evaluateToken(fileStruct);
 		
 		
 		
@@ -35,6 +36,8 @@ public class MainEngine {
 				.fromStringToRawTextList(fileStruct)
 		);
 		
+		grammarItem.setTerminalsList(listVariablesAndTerminals.getTerminalsList());
+		grammarItem.setVariablesList(listVariablesAndTerminals.getVariablesList());
 	
 		return grammarItem;
 	}

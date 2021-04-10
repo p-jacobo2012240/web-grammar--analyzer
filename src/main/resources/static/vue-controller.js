@@ -1,11 +1,13 @@
 // setting default values before uploading the file 
 let defaultProps = {
-	rawTextList: [{ line: '' }]
+	rawTextList: [{ line: '' }],
+	variablesList: [{ character: '' }],
+	terminalsList: [{ character: '' }]
 };
 
 const app = new Vue({
 	el: '#app',
-	  data () {
+	data() {
 		return {
 			file: null,
 			grammarItem: defaultProps
@@ -17,15 +19,15 @@ const app = new Vue({
 		},
 		submitFile() {
 			let formData = new FormData();
-			formData.append('file', this.file );
-			
+			formData.append('file', this.file);
+
 			//call api
 			fetch('http://localhost:8080/upload/file', {
 				method: 'POST',
 				body: formData
 			})
-			   .then(response => response.json())
-			   .then(data => {
+				.then(response => response.json())
+				.then(data => {
 					this.grammarItem = data;
 					console.log('Success:', data);
 				});

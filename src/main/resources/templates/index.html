@@ -9,18 +9,14 @@
 	rel="stylesheet"
 	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
 	crossorigin="anonymous">
-		
+
 <link href="main.css" rel="stylesheet">
 </head>
 <body>
 	<div id="app" class="dash-analyzer">
 		<!-- upload file -->
 		<div class="container">
-			<input 
-				type="file" 
-				ref="file"
-				v-on:change="handleFileUpload()" 
-			/><br>
+			<input type="file" ref="file" v-on:change="handleFileUpload()" /><br>
 		</div>
 		<div class="d-grid gap-2">
 			<button v-on:click="submitFile()" class="btn btn-light btn-send-txt"
@@ -34,12 +30,8 @@
 				<div class="col">
 					<div class="size-txt-outputs scroll-y-position">
 						<ul class="unstyled non-bullets">
-						   <li 
-						   		v-for="txtElementRaw in grammarItem.rawTextList" 
-						   		class="nano"
-						   	> 
-						   		{{ txtElementRaw .line }}
-						   	</li>						  
+							<li v-for="txtElementRaw in grammarItem.rawTextList" class="nano">
+								{{ txtElementRaw .line }}</li>
 						</ul>
 					</div>
 				</div>
@@ -56,17 +48,25 @@
 			<!-- variables and terminals grid  -->
 			<div class="grid-var-and-terms">
 				<!--  variables -->
-				<div class="variables-list-cnt">
+				<div class="variables-list-cnt scroll-y-position">
 					<div class="header-variable d-flex justify-content-center">
 						<b>V</b>
 					</div>
+					<ul class="unstyled non-bullets">
+						<li v-for="varElements in grammarItem.variablesList" class="nano">
+							{{ varElements.character }}</li>
+					</ul>
 				</div>
 				<!--  variables  -->
 				<!--  terminals  -->
-				<div class="terminals-list-cnt">
+				<div class="terminals-list-cnt scroll-y-position">
 					<div class="header-terminal d-flex justify-content-center">
 						<b>T</b>
 					</div>
+					<ul class="unstyled non-bullets">
+						<li v-for="termElements in grammarItem.terminalsList" class="nano">
+							{{ termElements.character }}</li>
+					</ul>
 				</div>
 				<!--  terminals  -->
 			</div>
