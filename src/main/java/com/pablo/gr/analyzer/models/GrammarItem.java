@@ -14,8 +14,31 @@ public class GrammarItem {
 	private List<Variables> variablesList;
 	private List<Terminals> terminalsList;
 	private String simpleFalg;
+	// using for create variables and terms [complex]
+	private List<Variables> variablesListComplex;
+	private List<Variables> terminalsListComplex;
 	
 	
+	public List<Variables> getTerminalsListComplex() {
+		return terminalsListComplex;
+	}
+
+
+	public void setTerminalsListComplex(List<Variables> terminalsListComplex) {
+		this.terminalsListComplex = terminalsListComplex;
+	}
+
+
+	public List<Variables> getVariablesListComplex() {
+		return variablesListComplex;
+	}
+
+
+	public void setVariablesListComplex(List<Variables> variablesListComplex) {
+		this.variablesListComplex = variablesListComplex;
+	}
+
+
 	public List<Variables> getVariablesList() {
 		return variablesList;
 	}

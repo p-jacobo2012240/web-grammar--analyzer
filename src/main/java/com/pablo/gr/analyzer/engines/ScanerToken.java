@@ -90,13 +90,13 @@ public class ScanerToken {
 	
 	// generate dummy productions
 	public List<Variables> getDummyProductions(List<Variables> variablesList ) {
-		List<Variables> dummyList = new ArrayList<>();
+		this.variablesListDummy.clear();
 		
-		for(Variables dummy: variablesList ) {
+		for (int i=0; i < (variablesList.size() * 2 ); i++ ) {
 			this.variablesListDummy.add(new Variables("-"));
 		}
-		
-		return dummyList;
+	
+		return this.variablesListDummy;
 	}
 
 }

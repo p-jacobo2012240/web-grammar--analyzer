@@ -74,17 +74,25 @@
 			<!-- variables and productions grid  -->
 			<div class="grid-var-and-productions">
 				<!--  variables -->
-				<div class="variables-list-cnt-procressed">
+				<div class="variables-list-cnt-procressed  scroll-y-position">
 					<div class="header-variable d-flex justify-content-center">
 						<b>V</b>
 					</div>
+					<ul class="unstyled non-bullets">
+						<li v-for="varElementsComplex in grammarItem.variablesListComplex" class="nano">
+							{{  varElementsComplex.character }}</li>
+					</ul>
 				</div>
 				<!--  variables  -->
 				<!--  productions -->
-				<div class="production-list-cnt-procressed">
+				<div class="production-list-cnt-procressed  scroll-y-position">
 					<div class="header-production d-flex justify-content-center">
 						<b>P</b>
 					</div>
+					<ul class="unstyled non-bullets">
+						<li v-for="prodElementsComplex in grammarItem.terminalsListComplex" class="nano">
+							{{  prodElementsComplex.character }}</li>
+					</ul>
 				</div>
 				<!--  productions  -->
 			</div>

@@ -38,7 +38,11 @@ public class MainEngine {
 		
 		grammarItem.setTerminalsList(listVariablesAndTerminals.getTerminalsList());
 		grammarItem.setVariablesList(listVariablesAndTerminals.getVariablesList());
-	
+		
+		// set dummy data
+		grammarItem.setVariablesListComplex(ScanerToken.getInstance().getDummyProductions(grammarItem.getVariablesList())); 
+		grammarItem.setTerminalsListComplex(ScanerToken.getInstance().getDummyProductions(grammarItem.getVariablesList()));
+		
 		return grammarItem;
 	}
 	
