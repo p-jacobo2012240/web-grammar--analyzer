@@ -30,6 +30,13 @@ const app = new Vue({
 				.then(data => {
 					this.grammarItem = data; /// fixed tomorrow
 					console.log('Success:', data);
+					
+					if(data.status !== undefined ) {
+						/// console.log('el txt es invalido.....');
+						let conf = confirm("El vector de variables o terminales no cumple con los requisitos");
+						console.log('status ', conf )	
+					}
+					
 				});
 		}
 	}
