@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pablo.gr.analyzer.engines.MainEngine;
+import com.pablo.gr.analyzer.engines.ParserFromPlainList;
 import com.pablo.gr.analyzer.models.GrammarItem;
 
 @RestController
@@ -37,10 +37,17 @@ public class AnalyzerController {
 				// setting data into string list
 				while ((line = bufferedReader.readLine()) != null) {
 					resultList.add(line);
-				}  
+				}
+				
+				this.logger.warn("size list = " + resultList.size() );
+				
+				// first analysis of the list of values
+				ParserFromPlainList.getInstance().verificationofIntegrityInList(resultList);
+				
+				
 				
 				// set data to main engine 
-				this.grammarEntity =  MainEngine.getInstance().processTxtFile(resultList);
+				// this.grammarEntity =  MainEngine.getInstance().processTxtFile(resultList);
 
 			} catch (IOException e) {
 				System.err.println(e.getMessage());

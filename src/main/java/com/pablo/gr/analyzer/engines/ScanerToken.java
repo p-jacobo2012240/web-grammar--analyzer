@@ -44,8 +44,8 @@ public class ScanerToken {
 			}
 		});
 
-		// validate that a character of the variables is not passed as it is a
-		// derivation
+		// validate that a character of the variables is not 
+		// passed as it is a derivation
 		variablesList.stream().forEach(var -> {
 			String element = var.getCharacter();
 			terminalList.removeIf(val -> val.getCharacter().equals(element));
