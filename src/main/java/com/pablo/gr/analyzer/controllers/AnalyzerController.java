@@ -44,6 +44,7 @@ public class AnalyzerController {
 				}
 				
 				this.logger.warn("size list = " + resultList.size() );
+				  
 				
 				// first analysis of the list of values
 				Map<String, Object> resultMap = ParserFromPlainList.getInstance().verificationofIntegrityInList(resultList);
