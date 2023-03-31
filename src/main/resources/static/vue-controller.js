@@ -18,6 +18,9 @@ const app = new Vue({
 	methods: {
 		handleFileUpload() {
 			this.file = this.$refs.file.files[0];
+
+			//auto  submitFile called
+			this.submitFile();
 		},
 		submitFile() {
 			let formData = new FormData();
