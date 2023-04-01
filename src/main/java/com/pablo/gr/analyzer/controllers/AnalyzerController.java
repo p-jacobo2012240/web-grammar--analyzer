@@ -24,7 +24,6 @@ import com.pablo.gr.analyzer.models.GrammarItem;
 
 @RestController
 public class AnalyzerController {
-	
 	private Logger logger = LoggerFactory.getLogger(AnalyzerController.class);
 	private GrammarItem grammarEntity = new GrammarItem();
 	private Map<String, Object> responseError = new HashMap<>();
@@ -38,16 +37,17 @@ public class AnalyzerController {
 			try {
 				InputStream inputStream = fileTxt.getInputStream();
 				bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
 				// setting data into string list
 				while ((line = bufferedReader.readLine()) != null) {
 					resultList.add(line);
 				}
-				
-				this.logger.warn("size list = " + resultList.size() );
-				  
-				
+
 				// first analysis of the list of values
-				Map<String, Object> resultMap = ParserFromPlainList.getInstance().verificationofIntegrityInList(resultList);
+				Map<String, Object> resultMap = ParserFromPlainList
+						.getInstance()
+						.verificationofIntegrityInList(resultList);
+
 				Object statusMap = resultMap.get("status");
 				boolean resultExp = Boolean.valueOf(statusMap.toString());
 				
@@ -55,7 +55,7 @@ public class AnalyzerController {
 					// set data to main engine 
 					this.grammarEntity =  MainEngine.getInstance().processTxtFile(resultList);
 				} else {
-					this.logger.warn("LA CADENA ESTA CORROMPIDA.....");
+					this.logger.warn("corrupt chain....");
 					this.responseError.put("status", false);
 					return new ResponseEntity<Object>(this.responseError, HttpStatus.INTERNAL_SERVER_ERROR);
 				}

@@ -14,9 +14,6 @@ public class ScanerToken {
 	private SyntaxCharacters syntaxCharacters = new SyntaxCharacters();
 	private List<Terminals> terminalList = new ArrayList<>();
 	private List<Variables> variablesList = new ArrayList<>();
-	//dummy values
-	private List<Variables> variablesListDummy = new ArrayList<>();
-	private List<Variables> variablesListDummyvars = new ArrayList<>();
 
 	public static ScanerToken getInstance() {
 		if (instance == null) {

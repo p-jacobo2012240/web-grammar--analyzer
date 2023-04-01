@@ -9,16 +9,13 @@ public class GrammarItem {
 	 * show in the frontend made with vue 
 	*/
 	private List<RawText> rawTextList;
-	private List<WithoutRecursivityText> withoutRecursivityTextList;
-	// using for create variables and terms [simple]
 	private List<Variables> variablesList;
 	private List<Terminals> terminalsList;
 	private String simpleFalg;
 	// using for create variables and terms [complex]
 	private List<Variables> variablesListComplex;
 	private List<Variables> terminalsListComplex;
-	
-	
+
 	public List<Variables> getTerminalsListComplex() {
 		return terminalsListComplex;
 	}
@@ -28,21 +25,17 @@ public class GrammarItem {
 		this.terminalsListComplex = terminalsListComplex;
 	}
 
-
 	public List<Variables> getVariablesListComplex() {
 		return variablesListComplex;
 	}
-
 
 	public void setVariablesListComplex(List<Variables> variablesListComplex) {
 		this.variablesListComplex = variablesListComplex;
 	}
 
-
 	public List<Variables> getVariablesList() {
 		return variablesList;
 	}
-
 
 	public void setVariablesList(List<Variables> variablesList) {
 		this.variablesList = variablesList;
@@ -53,15 +46,12 @@ public class GrammarItem {
 		return terminalsList;
 	}
 
-
 	public void setTerminalsList(List<Terminals> terminalsList) {
 		this.terminalsList = terminalsList;
 	}
 
-
 	public GrammarItem() {}
-	
-	
+
 	public GrammarItem(List<Variables> variablesList, List<Terminals> terminalsList, String simpleFalg) {
 		super();
 		this.variablesList = variablesList;
@@ -69,36 +59,21 @@ public class GrammarItem {
 		this.simpleFalg = simpleFalg;
 	}
 
-
 	public GrammarItem(List<RawText> rawTextList) {
 		super();
 		this.rawTextList = rawTextList;
 	}
-	
-	public GrammarItem(List<RawText> rawTextList, List<WithoutRecursivityText> withoutRecursivityTextList) {
-		super();
-		this.rawTextList = rawTextList;
-		this.withoutRecursivityTextList = withoutRecursivityTextList;
-	}
-	
-	
+
 	public List<RawText> getRawTextList() {
 		return rawTextList;
 	}
 	public void setRawTextList(List<RawText> rawTextList) {
 		this.rawTextList = rawTextList;
 	}
-	public List<WithoutRecursivityText> getWithoutRecursivityTextList() {
-		return withoutRecursivityTextList;
-	}
-	public void setWithoutRecursivityTextList(List<WithoutRecursivityText> withoutRecursivityTextList) {
-		this.withoutRecursivityTextList = withoutRecursivityTextList;
-	} 
-	
+
 	public String getSimpleFalg() {
 		return simpleFalg;
 	}
-
 
 	public void setSimpleFalg(String simpleFalg) {
 		this.simpleFalg = simpleFalg;

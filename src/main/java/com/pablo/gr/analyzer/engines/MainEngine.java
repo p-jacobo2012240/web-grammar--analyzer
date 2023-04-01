@@ -6,9 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.pablo.gr.analyzer.models.GrammarItem;
-import com.pablo.gr.analyzer.engines.ParserFromPlainList;
-import com.pablo.gr.analyzer.engines.ScanerToken;
-
 
 public class MainEngine {
 	private static MainEngine instance; 
@@ -23,8 +20,7 @@ public class MainEngine {
 	  
 	public GrammarItem processTxtFile(List<String> fileStruct) {
 		GrammarItem grammarItem = new GrammarItem();
-		
-		
+
 		GrammarItem listVariablesAndTerminals = ScanerToken
 				.getInstance().evaluateToken(fileStruct);
 		
