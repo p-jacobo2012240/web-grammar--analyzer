@@ -28,19 +28,25 @@ public class MainEngine {
 		GrammarItem listVariablesAndTerminals = ScanerToken
 				.getInstance().evaluateToken(fileStruct);
 		
-		
-		
 		grammarItem.setRawTextList(
 				ParserFromPlainList
 				.getInstance()
 				.fromStringToRawTextList(fileStruct)
 		);
-		
+
+		/**
+		 * assignment of variables and terminals
+		 * identified as [V, T] in UI
+		 * */
 		grammarItem.setTerminalsList(listVariablesAndTerminals.getTerminalsList());
 		grammarItem.setVariablesList(listVariablesAndTerminals.getVariablesList());
-		
-		// set dummy data
-		grammarItem.setVariablesListComplex(ScanerToken.getInstance().getDummyProductionsVars(grammarItem.getVariablesList())); 
+
+
+		/**
+		 * assignment of variables and terminals
+		 * identified as [Var, Produc] in UI
+		 * */
+		grammarItem.setVariablesListComplex(ScanerToken.getInstance().getDummyProductionsVars(grammarItem.getVariablesList()));
 		grammarItem.setTerminalsListComplex(ScanerToken.getInstance().getDummyProductions(grammarItem.getVariablesList()));
 		
 		return grammarItem;

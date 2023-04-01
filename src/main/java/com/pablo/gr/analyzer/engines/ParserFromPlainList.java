@@ -55,7 +55,7 @@ public class ParserFromPlainList {
 			}
 
 			if (stackValidations.contains("â") || stackValidations.contains("€") || stackValidations.contains("™")) {
-				System.out.println("cadena invalida....");
+				System.out.println("invalid chain....");
 				this.integrityChain = false;
 			} else {
 				if(valueT.contains("=")) {
@@ -69,14 +69,14 @@ public class ParserFromPlainList {
 					}
 				} else {       
 					this.configMap.put("status", false);
-					System.out.println("NOOOO contiene el signo = " );
+					System.out.println("Not contain sign = " );
 				}  
 			}
 		});
 
 		if (this.integrityChain && (this.counterValidChain >= 1)) {
 			this.configMap.put("status", true);
-			System.out.println("todo biennn");
+			System.out.println("it's work");
 			this.counterValidChain = 0;
 		}
 

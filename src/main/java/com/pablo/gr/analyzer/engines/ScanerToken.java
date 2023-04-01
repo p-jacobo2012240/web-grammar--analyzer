@@ -1,10 +1,6 @@
 package com.pablo.gr.analyzer.engines;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.pablo.gr.analyzer.utils.SyntaxCharacters;
@@ -47,14 +43,17 @@ public class ScanerToken {
 			}
 		});
 
-		// validate that a character of the variables is not 
-		// passed as it is a derivation
-		variablesList.stream().forEach(var -> {
-			String element = var.getCharacter();
-			terminalList.removeIf(val -> val.getCharacter().equals(element));
-		});
+		// validate that terminalList not contains duplicates
+		ArrayList<String> notRepeated = new ArrayList<>();
+		ArrayList<Terminals> terminals = new ArrayList<>();
+		for(Terminals element: this.terminalList) {
+			notRepeated.add(element.getCharacter());
+		}
 
-		GrammarItem grammarItemLists = new GrammarItem(variablesList, terminalList, "lists");
+		// TEMP this is a simple way for it
+		notRepeated.stream().distinct().forEach(ele -> terminals.add(new Terminals(ele)));
+
+		GrammarItem grammarItemLists = new GrammarItem(variablesList, terminals, "lists");
 		return grammarItemLists;
 	}
 
@@ -62,8 +61,18 @@ public class ScanerToken {
 		String[] splCurrentToken = currentToken.split("");
 		Stack<String> stackTokenChar = new Stack<>();
 
-		for (String value : splCurrentToken) {
-			stackTokenChar.add(value);
+		for (int i=0;i<splCurrentToken.length-1;i++) {
+			String grammarVariable = splCurrentToken[0];
+			String curr = splCurrentToken[i];
+			String next = splCurrentToken[i+1];
+
+			//general token case
+			stackTokenChar.add(splCurrentToken[i]);
+
+			//it's a recursion token case
+			if(grammarVariable.equals(curr) && grammarVariable.equals(next)) {
+				stackTokenChar.add(grammarVariable+grammarVariable);
+			}
 		}
 
 		Variables var = new Variables(stackTokenChar.firstElement());
@@ -80,6 +89,7 @@ public class ScanerToken {
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK_INVERSE))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EMPTY_SPACE)).collect(Collectors.toList());
 
+		// simple process can be contain duplicates tokens
 		stackFiltered.stream().forEach(terminalValue -> {
 			this.terminalList.add(new Terminals(terminalValue));
 		});
