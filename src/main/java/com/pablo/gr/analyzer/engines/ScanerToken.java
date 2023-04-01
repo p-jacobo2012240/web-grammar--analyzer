@@ -98,29 +98,6 @@ public class ScanerToken {
 		stackTokenChar.clear();
 		return this.objByToken;
 	}
-	
-	// generate dummy productions
-	public List<Variables> getDummyProductions(List<Variables> variablesList ) {
-		this.variablesListDummy.clear();
-		
-		for (int i=0; i < (variablesList.size() * 2 ); i++ ) {
-			this.variablesListDummy.add(new Variables("-"));
-		}
-	
-		return this.variablesListDummy;
-	}
-	
-	public List<Variables> getDummyProductionsVars(List<Variables> variablesList ) {
-		this.variablesListDummyvars.clear();
-		
-		
-		for (Variables varls: variablesList ) {
-			this.variablesListDummyvars.add(new Variables(varls.getCharacter()));
-			this.variablesListDummyvars.add(new Variables(varls.getCharacter()));
-		}
-	
-		return this.variablesListDummyvars;
-	}
 
 	public GrammarItem buildVariablesAndProductions(List<String> fileStruct) {
 		/**
@@ -190,5 +167,4 @@ public class ScanerToken {
 		}
 		return productions;
 	}
-
 }
