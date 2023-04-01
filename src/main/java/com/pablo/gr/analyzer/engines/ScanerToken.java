@@ -122,4 +122,45 @@ public class ScanerToken {
 		return this.variablesListDummyvars;
 	}
 
+	public GrammarItem buildVariablesAndProductions(List<String> fileStruct) {
+		/**
+		 * Important Note for the time in the UI show the second part of object like
+		 * UI -> setVariablesListComplex =  Var
+		 * UI -> setTerminalsListComplex = Produc
+		 * **/
+		List<String> rules = new ArrayList<>();
+		for (String line : fileStruct) {
+			rules.add(line);
+		}
+
+		List<String> productions = findProductionsForVariable("S", rules);
+		for (String production : productions) {
+			System.out.println(production);
+		}
+
+		GrammarItem grammarItemLists = new GrammarItem();
+		grammarItemLists.setVariablesListComplex(null);
+		grammarItemLists.setTerminalsListComplex(null);
+		return grammarItemLists;
+	}
+
+	public List<String> findProductionsForVariable(String variable, List<String> grammarRules) {
+		List<String> productions = new ArrayList<>();
+		Set<String> alreadyFound = new HashSet<>(); // to avoid duplicates
+		for (String rule : grammarRules) {
+			String[] parts = rule.split("=");
+			if (parts[0].trim().equals(variable)) {
+				String[] options = parts[1].trim().split("\\|");
+				for (String option : options) {
+					String production = option.trim();
+					if (!alreadyFound.contains(production)) {
+						productions.add(variable + " = " + production);
+						alreadyFound.add(production);
+					}
+				}
+			}
+		}
+		return productions;
+	}
+
 }

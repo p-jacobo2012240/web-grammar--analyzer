@@ -46,9 +46,18 @@ public class MainEngine {
 		 * assignment of variables and terminals
 		 * identified as [Var, Produc] in UI
 		 * */
+
+		GrammarItem variablesAndProductions = ScanerToken
+				.getInstance()
+				.buildVariablesAndProductions(fileStruct);
+
+
+
+		/*** with dummies
 		grammarItem.setVariablesListComplex(ScanerToken.getInstance().getDummyProductionsVars(grammarItem.getVariablesList()));
 		grammarItem.setTerminalsListComplex(ScanerToken.getInstance().getDummyProductions(grammarItem.getVariablesList()));
-		
+
+		 */
 		return grammarItem;
 	}
 	
