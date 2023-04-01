@@ -80,8 +80,6 @@ public class ScanerToken {
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EQUAL_SIGN))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.PIPE))
-				.filter(tkn -> !tkn.equals(syntaxCharacters.T_IN_CHAIN))
-				.filter(tkn -> !tkn.equals(syntaxCharacters.F_IN_CHAIN))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EPSILON))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK_INVERSE))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EMPTY_SPACE)).collect(Collectors.toList());
