@@ -129,32 +129,60 @@ public class ScanerToken {
 		 * UI -> setTerminalsListComplex = Produc
 		 * **/
 		List<String> rules = new ArrayList<>();
+		GrammarItem grammarItemLists = new GrammarItem();
+
 		for (String line : fileStruct) {
 			rules.add(line);
 		}
 
-		List<String> productions = findProductionsForVariable("S", rules);
+		List<String> productions = findProductions(rules);
 		for (String production : productions) {
-			System.out.println(production);
+			System.out.println("production = " + production);
 		}
 
-		GrammarItem grammarItemLists = new GrammarItem();
-		grammarItemLists.setVariablesListComplex(null);
-		grammarItemLists.setTerminalsListComplex(null);
+		String[] rawSyntax = productions.toArray(new String[0]);
+		List<String> variableList = new ArrayList<>();
+		List<String> productionList = new ArrayList<>();
+		for (String inputString : rawSyntax) {
+			String[] parts = inputString.split("=");
+			String variable = parts[0].trim();
+			String production = parts[1].trim().replaceAll("'", "");
+			variableList.add(variable);
+			productionList.add(production);
+		}
+		System.out.println("Variables: " + variableList);
+		System.out.println("Productions: " + productionList);
+
+		// fill a custom object
+		List<Variables> variablesOfProductionList = new ArrayList<>();
+		for(String v : variableList) {
+			Variables newTerminal = new Variables(v);
+			variablesOfProductionList.add(newTerminal);
+		}
+
+		// fill a custom object
+		List<Variables> terminalsOfProductionList = new ArrayList<>();
+		for(String t : productionList) {
+			Variables newProduction = new Variables(t);
+			terminalsOfProductionList.add(newProduction);
+		}
+
+		grammarItemLists.setVariablesListComplex(variablesOfProductionList);
+		grammarItemLists.setTerminalsListComplex(terminalsOfProductionList);
 		return grammarItemLists;
 	}
 
-	public List<String> findProductionsForVariable(String variable, List<String> grammarRules) {
+	public List<String> findProductions(List<String> grammarRules) {
 		List<String> productions = new ArrayList<>();
 		Set<String> alreadyFound = new HashSet<>(); // to avoid duplicates
 		for (String rule : grammarRules) {
 			String[] parts = rule.split("=");
-			if (parts[0].trim().equals(variable)) {
+			if (parts[0].trim().equals("S")) {
 				String[] options = parts[1].trim().split("\\|");
 				for (String option : options) {
 					String production = option.trim();
 					if (!alreadyFound.contains(production)) {
-						productions.add(variable + " = " + production);
+						productions.add("S = " + production);
 						alreadyFound.add(production);
 					}
 				}

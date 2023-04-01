@@ -51,13 +51,8 @@ public class MainEngine {
 				.getInstance()
 				.buildVariablesAndProductions(fileStruct);
 
-
-
-		/*** with dummies
-		grammarItem.setVariablesListComplex(ScanerToken.getInstance().getDummyProductionsVars(grammarItem.getVariablesList()));
-		grammarItem.setTerminalsListComplex(ScanerToken.getInstance().getDummyProductions(grammarItem.getVariablesList()));
-
-		 */
+		grammarItem.setVariablesListComplex(variablesAndProductions.getVariablesListComplex());
+		grammarItem.setTerminalsListComplex(variablesAndProductions.getTerminalsListComplex());
 		return grammarItem;
 	}
 	
