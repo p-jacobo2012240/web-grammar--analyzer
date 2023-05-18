@@ -55,27 +55,10 @@ public class ScanerToken {
 	}
 
 	public Map<String, Object> splitedToken(String currentToken) {
-		String[] splCurrentToken = currentToken.split("");
-		Stack<String> stackTokenChar = new Stack<>();
+		String[] parts = currentToken.split("=");
 
-		for (int i=0;i<splCurrentToken.length-1;i++) {
-			String grammarVariable = splCurrentToken[0];
-			String curr = splCurrentToken[i];
-			String next = splCurrentToken[i+1];
-
-			//general token case
-			stackTokenChar.add(splCurrentToken[i]);
-
-			//it's a recursion token case
-			if(grammarVariable.equals(curr) && grammarVariable.equals(next)) {
-				stackTokenChar.add(grammarVariable+grammarVariable);
-			}
-		}
-
-		Variables var = new Variables(stackTokenChar.firstElement());
-		this.objByToken.put("variable", var);
-         
-		List<String> stackFiltered = stackTokenChar.stream().filter(tkn -> !tkn.equals(stackTokenChar.firstElement()))
+		List<String> stackFiltered = extractTerminals(parts[1]).stream()
+				.filter(tkn -> !tkn.equals(parts[0].trim()))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK_SIMPLE))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EQUAL_SIGN))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK))
@@ -84,13 +67,16 @@ public class ScanerToken {
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK_INVERSE))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EMPTY_SPACE)).collect(Collectors.toList());
 
+
+		// fill variables
+		Variables var = new Variables(parts[0]);
+		this.objByToken.put("variable", var);
+
 		// simple process can be contain duplicates tokens
 		stackFiltered.stream().forEach(terminalValue -> {
 			this.terminalList.add(new Terminals(terminalValue));
 		});
-		
-		//clear pile
-		stackTokenChar.clear();
+
 		return this.objByToken;
 	}
 
@@ -144,17 +130,43 @@ public class ScanerToken {
 		return grammarItemLists;
 	}
 
+	public List<String> extractTerminals(String rightSideText ) {
+		List<String> characters = new ArrayList<>();
+
+		int index = 0;
+		while (index < rightSideText.length()) {
+			char c = rightSideText.charAt(index);
+			if (c == '\'') {
+				StringBuilder sb = new StringBuilder();
+				index++;
+				while (index < rightSideText.length()) {
+					char currentChar = rightSideText.charAt(index);
+					if (currentChar == '\'') {
+						break;
+					}
+					sb.append(currentChar);
+					index++;
+				}
+				characters.add(sb.toString());
+			}
+			index++;
+		}
+
+		return characters;
+	}
+
 	public List<String> findProductions(List<String> grammarRules) {
 		List<String> productions = new ArrayList<>();
 		Set<String> alreadyFound = new HashSet<>(); // to avoid duplicates
 		for (String rule : grammarRules) {
 			String[] parts = rule.split("=");
-			if (parts[0].trim().equals("S")) {
+			String leftSideVariable = parts[0].trim();
+			if (leftSideVariable != null) {
 				String[] options = parts[1].trim().split("\\|");
 				for (String option : options) {
 					String production = option.trim();
 					if (!alreadyFound.contains(production)) {
-						productions.add("S = " + production);
+						productions.add(leftSideVariable + " = " + production);
 						alreadyFound.add(production);
 					}
 				}
