@@ -58,14 +58,15 @@ public class ScanerToken {
 		String[] parts = currentToken.split("=");
 
 		List<String> stackFiltered = extractTerminals(parts[1]).stream()
-				.filter(tkn -> !tkn.equals(parts[0].trim()))
+				.filter(tkn -> !tkn.equals(parts[0].trim()))  // remove when terminals contain a variable token
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK_SIMPLE))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EQUAL_SIGN))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.PIPE))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.EPSILON))
 				.filter(tkn -> !tkn.equals(syntaxCharacters.QUOTATION_MARK_INVERSE))
-				.filter(tkn -> !tkn.equals(syntaxCharacters.EMPTY_SPACE)).collect(Collectors.toList());
+				.filter(tkn -> !tkn.equals(syntaxCharacters.EMPTY_SPACE))
+				.collect(Collectors.toList());
 
 
 		// fill variables
