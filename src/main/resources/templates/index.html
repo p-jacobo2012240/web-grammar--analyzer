@@ -36,8 +36,14 @@
 				<div class="col">
 					<div class="size-txt-outputs">
 						<div class="cnt-message d-flex justify-content-center">
-							<p>----------------------</p>
+							<p> Sin recursividad izq </p>
 						</div>
+						<!-- without recursivity to the left -->
+						<ul class="unstyled non-bullets">
+							<li v-for="txtElementRaw in grammarItem.rawTextList" class="nano">
+								{{ txtElementRaw.line }}</li>
+						</ul>
+						<!-- without recursivity to the left -->
 					</div>
 				</div>
 			</div>
