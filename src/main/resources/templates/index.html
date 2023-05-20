@@ -34,14 +34,14 @@
 				</div>
 				<div class="w-100"></div>
 				<div class="col">
-					<div class="size-txt-outputs">
+					<div class="size-txt-outputs scroll-y-position">
 						<div class="cnt-message d-flex justify-content-center">
 							<p> Sin recursividad izq </p>
 						</div>
 						<!-- without recursivity to the left -->
 						<ul class="unstyled non-bullets">
-							<li v-for="txtElementRaw in grammarItem.rawTextList" class="nano">
-								{{ txtElementRaw.line }}</li>
+							<li v-for="production in grammarItem.rawTextWithoutLeftRecursion" class="nano">
+								{{ production.line }}</li>
 						</ul>
 						<!-- without recursivity to the left -->
 					</div>

@@ -4,7 +4,8 @@ let defaultProps = {
 	variablesList: [{ character: '' }],
 	terminalsList: [{ character: '' }],
 	variablesListComplex: [{ character: '' }],
-	terminalsListComplex: [{ character: '' }]
+	terminalsListComplex: [{ character: '' }],
+	rawTextWithoutRecursionToLeft: [{ line: '' }]
 };
 
 const app = new Vue({

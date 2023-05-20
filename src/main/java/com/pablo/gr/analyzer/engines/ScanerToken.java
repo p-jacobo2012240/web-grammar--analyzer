@@ -3,6 +3,7 @@ package com.pablo.gr.analyzer.engines;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.pablo.gr.analyzer.models.RawText;
 import com.pablo.gr.analyzer.utils.SyntaxCharacters;
 import com.pablo.gr.analyzer.models.GrammarItem;
 import com.pablo.gr.analyzer.models.Terminals;
@@ -129,6 +130,50 @@ public class ScanerToken {
 		grammarItemLists.setVariablesListComplex(variablesOfProductionList);
 		grammarItemLists.setTerminalsListComplex(terminalsOfProductionList);
 		return grammarItemLists;
+	}
+
+	public List<RawText> removeRecursion(List<String> fileStruct) {
+		List<String> modifiedProductions = removeLeftRecursion(fileStruct);
+
+		System.out.println("productions without left recursion:");
+		for (String production : modifiedProductions) {
+			System.out.println("production wlr = " + production);
+		}
+
+		return ParserFromPlainList.getInstance().fromStringToRawTextList(modifiedProductions);
+	}
+
+	public List<String> removeLeftRecursion(List<String> productions) {
+		List<String> modifiedProductions = new ArrayList<>();
+
+		for (int i = 0; i < productions.size(); i++) {
+			String currentProduction = productions.get(i);
+			String[] parts = currentProduction.split("=");
+			String nonTerminal = parts[0].trim();
+			String[] alternatives = parts[1].trim().split("\\|");
+
+			List<String> newAlternatives = new ArrayList<>();
+			List<String> recursiveAlternatives = new ArrayList<>();
+
+			for (String alternative : alternatives) {
+				if (alternative.trim().startsWith(nonTerminal)) {
+					recursiveAlternatives.add(alternative.trim().substring(1));
+				} else {
+					newAlternatives.add(alternative.trim());
+				}
+			}
+
+			if (recursiveAlternatives.isEmpty()) {
+				modifiedProductions.add(currentProduction);
+			} else {
+				String newNonTerminal = nonTerminal + "'";
+
+				modifiedProductions.add(nonTerminal + " = " + String.join(" " + newNonTerminal + " | ", newAlternatives) + " " + newNonTerminal);
+				modifiedProductions.add(newNonTerminal + " = " + String.join(" " + newNonTerminal + " | ", recursiveAlternatives) + " " + newNonTerminal + " | e");
+			}
+		}
+
+		return modifiedProductions;
 	}
 
 	public List<String> extractTerminals(String rightSideText ) {

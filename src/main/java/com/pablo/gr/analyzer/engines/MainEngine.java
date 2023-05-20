@@ -2,6 +2,7 @@ package com.pablo.gr.analyzer.engines;
 
 import java.util.List;
 
+import com.pablo.gr.analyzer.models.RawText;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,6 +50,17 @@ public class MainEngine {
 
 		grammarItem.setVariablesListComplex(variablesAndProductions.getVariablesListComplex());
 		grammarItem.setTerminalsListComplex(variablesAndProductions.getTerminalsListComplex());
+
+		/**
+		 * assignment of raw text recursivity to the left
+		 * identified as [ Sin recursividad izq ] in UI
+		 * */
+
+		grammarItem.setRawTextWithoutLeftRecursion(
+				ScanerToken
+					.getInstance()
+					.removeRecursion(fileStruct)
+		);
 		return grammarItem;
 	}
 	

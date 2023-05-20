@@ -15,6 +15,8 @@ public class GrammarItem {
 	// using for create variables and terms [complex]
 	private List<Variables> variablesListComplex;
 	private List<Variables> terminalsListComplex;
+	// using for fill the raw text without recursion to left
+	private List<RawText> rawTextWithoutRecursionToLeft;
 
 	public List<Variables> getTerminalsListComplex() {
 		return terminalsListComplex;
@@ -71,14 +73,11 @@ public class GrammarItem {
 		this.rawTextList = rawTextList;
 	}
 
-	public String getSimpleFalg() {
-		return simpleFalg;
+	public List<RawText> getRawTextWithoutLeftRecursion() {
+		return rawTextWithoutRecursionToLeft;
+	}
+	public void setRawTextWithoutLeftRecursion(List<RawText> productions) {
+		this.rawTextWithoutRecursionToLeft = productions;
 	}
 
-	public void setSimpleFalg(String simpleFalg) {
-		this.simpleFalg = simpleFalg;
-	}
-	
-	
-	
 }
