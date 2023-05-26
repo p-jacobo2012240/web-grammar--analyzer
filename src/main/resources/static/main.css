@@ -65,7 +65,8 @@
 	position: absolute;
 	width: 95px;
 	left: 4px;
-	height: 400px;
+	height: 200px;
+	top: 7px;
 	border-style: solid;
 	border-color: rgb(242, 242, 242);
 }
@@ -75,8 +76,9 @@
 	position: absolute;
 	left: 104px;
 	width: 95px;
-	height: 400px;
+	height: 200px;
 	border-style: solid;
+	top: 7px;
 	border-color: rgb(242, 242, 242);
 }
 
@@ -92,7 +94,8 @@
 	position: absolute;
     left: 5px;
     width: 92px;
-    height: 400px;
+    height: 200px;
+    top: 7px;
     border-style: solid;
     border-color: rgb(242, 242, 242);
 }
@@ -107,7 +110,8 @@
 	position: absolute;
     left: 95px;
     width: 102px;
-    height: 400px;
+    height: 200px;
+    top: 7px;
     border-style: solid;
     border-color: rgb(242, 242, 242);
 }
@@ -130,4 +134,50 @@
 .drop-container:hover {
   background: #eee;
   border-color: #111;
+}
+
+/** variables without recursion container **/
+/* variables list  */
+.variables-list-wlr-cnt {
+    position: absolute;
+    width: 95px;
+    left: 205px;
+    height: 198px;
+    top: 278px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
+}
+
+
+/* terminals list */
+.terminals-list-wlr-cnt {
+	 position: absolute;
+     width: 95px;
+     left: 305px;
+     height: 198px;
+     top: 278px;
+     border-style: solid;
+     border-color: rgb(242, 242, 242);
+}
+
+
+/* Var container without  recursion to left */
+.variables-list-cnt-wlr-procressed {
+	 position: absolute;
+     width: 95px;
+     left: 406px;
+     height: 198px;
+     top: 278px;
+     border-style: solid;
+     border-color: rgb(242, 242, 242);
+}
+
+.production-list-cnt-wlr-procressed {
+    position: absolute;
+     width: 95px;
+     left: 504px;
+     height: 198px;
+     top: 278px;
+     border-style: solid;
+     border-color: rgb(242, 242, 242);
 }
