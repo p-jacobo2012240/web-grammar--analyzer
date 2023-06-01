@@ -18,16 +18,19 @@
 		<div class="container drop-container">
 			<input type="file" ref="file" v-on:change="handleFileUpload()" /><br>
 		</div>
-		<div style="height: 7px"></div>
+		<div style="height: 55px"></div>
 		<!-- upload file -->
 		<!-- data container  -->
 		<div>
+			<div class="row">
+				<div class="col" style="background-color: rgb(242, 242, 242) !important;" ></div>
+			</div>
 			<!-- text file grid -->
 			<div class="row">
 				<div class="col">
 					<div class="size-txt-outputs scroll-y-position">
 						<div class="cnt-message d-flex justify-content-center">
-							<p> Despliegue de archivo </p>
+							<p> Gramática </p>
 						</div>
 						<ul class="unstyled non-bullets">
 							<li v-for="txtElementRaw in grammarItem.rawTextList" class="nano">
@@ -36,19 +39,6 @@
 					</div>
 				</div>
 				<div class="w-100"></div>
-				<div class="col">
-					<div class="size-txt-outputs scroll-y-position">
-						<div class="cnt-message d-flex justify-content-center">
-							<p> Sin recursividad izq </p>
-						</div>
-						<!-- without recursivity to the left -->
-						<ul class="unstyled non-bullets">
-							<li v-for="production in grammarItem.rawTextWithoutLeftRecursion" class="nano">
-								{{ production.line }}</li>
-						</ul>
-						<!-- without recursivity to the left -->
-					</div>
-				</div>
 			</div>
 			<!-- text file grid  -->
 			<!-- variables and terminals grid  -->
@@ -101,52 +91,89 @@
 					</ul>
 				</div>
 				<!--  productions  -->
+				<!--  label with recursion -->
+					<div>
+						<div class="with-recursion-label d-flex justify-content-center">
+							<b>Con recursividad</b>
+						</div>
+						<div class="with-recursion-productions-table">
+							<p>Tabla de producciones</p>
+						</div>
+						<div style="height: 35px"></div>
+					</div>
+				<!--  label with recursion -->
 			</div>
+
+			<!-- recursion from left --->
+			<div class="size-txt-wlr-outputs scroll-y-position">
+				<div class="cnt-message d-flex justify-content-center">
+					<p> Sin recursividad izq </p>
+				</div>
+				<!-- without recursivity to the left -->
+				<ul class="unstyled non-bullets">
+					<li v-for="production in grammarItem.rawTextWithoutLeftRecursion" class="nano">
+						{{ production.line }}</li>
+				</ul>
+				<!-- without recursivity to the left -->
+			</div>
+
 			<!-- variables and productions grid  -->
 			<!-- section data without recursion to left -->
-				<!-- variables [V] -->
-				<div class="variables-list-wlr-cnt scroll-y-position">
-					<!--div-- class="header-variable d-flex justify-content-center">
-						<b>V</b>
-					</div-->
-					<ul class="unstyled non-bullets">
-						<li v-for="varElements in grammarItem.variablesList" class="nano">
-							{{ varElements.character }}</li>
-					</ul>
-				</div>
-				<!-- variables [V] -->
-				<!-- terminals [T] -->
-				<div class="terminals-list-wlr-cnt scroll-y-position">
-					<!--div-- class="header-variable d-flex justify-content-center">
-						<b>T</b>
-					</div-->
-					<ul class="unstyled non-bullets">
-						<li v-for="varElements in grammarItem.variablesList" class="nano">
-							{{ varElements.character }}</li>
-					</ul>
-				</div>
-				<!-- terminals [T] -->
-				<!-- Variables and Productions -->
-				<div class="variables-list-cnt-wlr-procressed scroll-y-position">
-					<!--div-- class="header-variable d-flex justify-content-center">
-						<b>Var</b>
-					</div-->
-					<ul class="unstyled non-bullets">
-						<li v-for="varElementsComplex in grammarItem.variablesListComplex" class="nano">
-							{{  varElementsComplex.character }}</li>
-					</ul>
-				</div>
-				<div class="production-list-cnt-wlr-procressed  scroll-y-position">
-					<!--div-- class="header-production d-flex justify-content-center">
-						<b>Produc</b>
-					</div-->
-					<ul class="unstyled non-bullets">
-						<li v-for="prodElementsComplex in grammarItem.terminalsListComplex" class="nano">
-							{{  prodElementsComplex.character }}</li>
-					</ul>
+			<!-- variables [V] -->
+			<div class="variables-list-wlr-cnt scroll-y-position">
+				<div class="header-variable d-flex justify-content-center">
+                    <b>V</b>
+                </div>
+				<ul class="unstyled non-bullets">
+					<li v-for="varElements in grammarItem.variablesList" class="nano">
+						{{ varElements.character }}</li>
+				</ul>
 			</div>
-				<!-- Variables and Productions -->
+			<!-- variables [V] -->
+			<!-- terminals [T] -->
+			<div class="terminals-list-wlr-cnt scroll-y-position">
+				<div class="header-variable d-flex justify-content-center">
+                    <b>T</b>
+                </div>
+				<ul class="unstyled non-bullets">
+					<li v-for="varElements in grammarItem.variablesList" class="nano">
+						{{ varElements.character }}</li>
+				</ul>
+			</div>
+			<!-- terminals [T] -->
+			<!-- Variables and Productions -->
+			<div class="variables-list-cnt-wlr-procressed scroll-y-position">
+				<div class="header-variable d-flex justify-content-center">
+                    <b>Var</b>
+                </div>
+				<ul class="unstyled non-bullets">
+					<li v-for="varElementsComplex in grammarItem.variablesListComplex" class="nano">
+						{{  varElementsComplex.character }}</li>
+				</ul>
+			</div>
+			<div class="production-list-cnt-wlr-procressed  scroll-y-position">
+				<div class="header-production d-flex justify-content-center">
+                    <b>Produc</b>
+                </div>
+				<ul class="unstyled non-bullets">
+					<li v-for="prodElementsComplex in grammarItem.terminalsListComplex" class="nano">
+						{{  prodElementsComplex.character }}</li>
+				</ul>
+			</div>
+			<!-- Variables and Productions -->
 			<!-- section data without recursion to left -->
+			<!--  label without recursion -->
+			<div>
+				<div class="without-recursion-label d-flex justify-content-center">
+					<b>Sin recursividad</b>
+				</div>
+				<div class="without-recursion-productions-table">
+					<p>Tabla de producciones</p>
+				</div>
+				<div style="height: 35px"></div>
+			</div>
+			<!--  label without recursion -->
+
 		</div>
 		<!-- data container  -->
 	</div>

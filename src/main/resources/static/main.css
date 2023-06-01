@@ -3,7 +3,7 @@
 .dash-analyzer {
 	width: 600px;
 	position: absolute;
-	top: 50%;
+	top: 20%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	position: absolute;
@@ -36,10 +36,12 @@
 }
 
 .size-txt-outputs {
-	width: 200px;
-	height: 200px;
-	border-style: solid;
-	border-color: rgb(242, 242, 242);
+    width: 200px;
+    height: 200px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
+    position: absolute;
+    left: -305px;
 }
 
 .grid-var-and-terms {
@@ -64,9 +66,9 @@
 .variables-list-cnt {
 	position: absolute;
 	width: 95px;
-	left: 4px;
+	left: -302px;
 	height: 200px;
-	top: 7px;
+	top: 53px;
 	border-style: solid;
 	border-color: rgb(242, 242, 242);
 }
@@ -74,11 +76,11 @@
 /* terminals list  */
 .terminals-list-cnt {
 	position: absolute;
-	left: 104px;
+	left: -203px;
 	width: 95px;
 	height: 200px;
 	border-style: solid;
-	top: 7px;
+	top: 53px;
 	border-color: rgb(242, 242, 242);
 }
 
@@ -92,10 +94,10 @@
 
 .variables-list-cnt-procressed {
 	position: absolute;
-    left: 5px;
+    left: -298px;
     width: 92px;
     height: 200px;
-    top: 7px;
+    top: 53px;
     border-style: solid;
     border-color: rgb(242, 242, 242);
 }
@@ -108,10 +110,10 @@
 
 .production-list-cnt-procressed {
 	position: absolute;
-    left: 95px;
+    left: -207px;
     width: 102px;
     height: 200px;
-    top: 7px;
+    top: 53px;
     border-style: solid;
     border-color: rgb(242, 242, 242);
 }
@@ -137,13 +139,23 @@
 }
 
 /** variables without recursion container **/
+
+.size-txt-wlr-outputs {
+   width: 200px;
+   height: 200px;
+   border-style: solid;
+   border-color: rgb(242, 242, 242);
+   position: absolute;
+   left: 341px;
+}
+
 /* variables list  */
 .variables-list-wlr-cnt {
     position: absolute;
     width: 95px;
-    left: 205px;
+    left: 544px;
     height: 198px;
-    top: 278px;
+    top: 122px;
     border-style: solid;
     border-color: rgb(242, 242, 242);
 }
@@ -151,33 +163,73 @@
 
 /* terminals list */
 .terminals-list-wlr-cnt {
-	 position: absolute;
-     width: 95px;
-     left: 305px;
-     height: 198px;
-     top: 278px;
-     border-style: solid;
-     border-color: rgb(242, 242, 242);
+    position: absolute;
+    width: 95px;
+    left: 642px;
+    height: 198px;
+    top: 122px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
 }
 
 
 /* Var container without  recursion to left */
 .variables-list-cnt-wlr-procressed {
-	 position: absolute;
-     width: 95px;
-     left: 406px;
-     height: 198px;
-     top: 278px;
-     border-style: solid;
-     border-color: rgb(242, 242, 242);
+    position: absolute;
+    width: 95px;
+    left: 740px;
+    height: 198px;
+    top: 122px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
 }
 
 .production-list-cnt-wlr-procressed {
     position: absolute;
-     width: 95px;
-     left: 504px;
-     height: 198px;
-     top: 278px;
-     border-style: solid;
-     border-color: rgb(242, 242, 242);
+    width: 95px;
+    left: 813px;
+    height: 198px;
+    top: 122px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
+}
+
+/** labels **/
+
+.with-recursion-label  {
+    height: 30px;
+    position: absolute;
+    width: 601px;
+    left: -706px;
+    height: 28px;
+    top: 2px;
+    background-color: rgb(242, 242, 242) !important;
+}
+
+.with-recursion-productions-table  {
+    height: 10px;
+    position: absolute;
+    width: 164px;
+    left: -282px;
+    height: 28px;
+    top: 28px;
+}
+
+.without-recursion-label  {
+    height: 30px;
+    position: absolute;
+    width: 568px;
+    left: 340px;
+    height: 28px;
+    top: 70px;
+    background-color: rgb(66, 148, 182) !important;
+}
+
+.without-recursion-productions-table  {
+    height: 10px;
+    position: absolute;
+    width: 164px;
+    left: 745px;
+    height: 28px;
+    top: 97px;
 }
