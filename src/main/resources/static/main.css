@@ -243,3 +243,34 @@
     height: 28px;
     top: 97px;
 }
+
+/** first function **/
+
+.variables-list-cnt-ff {
+    position: absolute;
+    width: 95px;
+    left: 104px;
+    height: 198px;
+    top: 347px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
+}
+
+.terminals-list-cnt-ff {
+    position: absolute;
+    width: 140px;
+    left: 199px;
+    height: 198px;
+    top: 347px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
+}
+
+.first-function-label {
+    height: 30px;
+    position: absolute;
+    width: 235px;
+    left: 150px;
+    height: 28px;
+    top: 322px;
+}
