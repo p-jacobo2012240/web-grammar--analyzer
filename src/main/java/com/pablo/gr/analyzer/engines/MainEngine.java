@@ -3,6 +3,8 @@ package com.pablo.gr.analyzer.engines;
 import java.util.List;
 
 import com.pablo.gr.analyzer.models.RawText;
+import com.pablo.gr.analyzer.models.Terminals;
+import com.pablo.gr.analyzer.models.Variables;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +25,7 @@ public class MainEngine {
 		GrammarItem grammarItem = new GrammarItem();
 
 		GrammarItem listVariablesAndTerminals = ScanerToken
-				.getInstance().evaluateToken(fileStruct);
+				.getInstance().evaluateToken(fileStruct, true);
 		
 		grammarItem.setRawTextList(
 				ParserFromPlainList
@@ -61,6 +63,25 @@ public class MainEngine {
 					.getInstance()
 					.removeRecursion(fileStruct)
 		);
+
+
+		/**
+		 * assignment of variables and terminals
+		 * whithout recursion to left
+		 * identified as [V, T] in UI
+		 * */
+
+		ScanerToken skToken = new ScanerToken();
+
+		GrammarItem variablesAndTerminalsWithoutRecursionFromLeft = skToken
+				.evaluateToken(ParserFromPlainList
+						.getInstance().fromRawTextListToString(grammarItem.getRawTextWithoutLeftRecursion()), false );
+
+		grammarItem.setVariablesListWithoutRecursionToLeft(variablesAndTerminalsWithoutRecursionFromLeft
+				.getVariablesListWithoutRecursionToLeft());
+		grammarItem.setTerminalsListWithoutRecursionToLeft(
+				listVariablesAndTerminals.getTerminalsList());
+
 		return grammarItem;
 	}
 	

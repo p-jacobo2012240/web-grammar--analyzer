@@ -23,7 +23,7 @@ public class ScanerToken {
 		return instance;
 	}
   
-	public GrammarItem evaluateToken(List<String> fileStruct) {
+	public GrammarItem evaluateToken(List<String> fileStruct, Boolean isWithRecursion) {
 		variablesList.clear();
 		terminalList.clear();
 		
@@ -51,7 +51,7 @@ public class ScanerToken {
 		// TEMP this is a simple way for it
 		notRepeated.stream().distinct().forEach(ele -> terminals.add(new Terminals(ele)));
 
-		GrammarItem grammarItemLists = new GrammarItem(variablesList, terminals, "lists");
+		GrammarItem grammarItemLists = new GrammarItem(variablesList, terminals, isWithRecursion);
 		return grammarItemLists;
 	}
 
@@ -95,10 +95,8 @@ public class ScanerToken {
 			rules.add(line);
 		}
 
+		// get productions
 		List<String> productions = findProductions(rules);
-		for (String production : productions) {
-			System.out.println("production = " + production);
-		}
 
 		String[] rawSyntax = productions.toArray(new String[0]);
 		List<String> variableList = new ArrayList<>();
@@ -110,8 +108,6 @@ public class ScanerToken {
 			variableList.add(variable);
 			productionList.add(production);
 		}
-		System.out.println("Variables: " + variableList);
-		System.out.println("Productions: " + productionList);
 
 		// fill a custom object
 		List<Variables> variablesOfProductionList = new ArrayList<>();
@@ -134,13 +130,9 @@ public class ScanerToken {
 
 	public List<RawText> removeRecursion(List<String> fileStruct) {
 		List<String> modifiedProductions = removeLeftRecursion(fileStruct);
-
-		System.out.println("productions without left recursion:");
-		for (String production : modifiedProductions) {
-			System.out.println("production wlr = " + production);
-		}
-
-		return ParserFromPlainList.getInstance().fromStringToRawTextList(modifiedProductions);
+		return ParserFromPlainList
+				.getInstance()
+				.fromStringToRawTextList(modifiedProductions);
 	}
 
 	public List<String> removeLeftRecursion(List<String> productions) {

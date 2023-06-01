@@ -5,7 +5,8 @@ let defaultProps = {
 	terminalsList: [{ character: '' }],
 	variablesListComplex: [{ character: '' }],
 	terminalsListComplex: [{ character: '' }],
-	rawTextWithoutRecursionToLeft: [{ line: '' }]
+	rawTextWithoutRecursionToLeft: [{ line: '' }],
+	terminalsListWithoutRecursionToLeft: [{ line: '' }]
 };
 
 const app = new Vue({

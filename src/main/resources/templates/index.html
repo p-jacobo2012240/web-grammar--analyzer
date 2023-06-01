@@ -125,8 +125,8 @@
                     <b>V</b>
                 </div>
 				<ul class="unstyled non-bullets">
-					<li v-for="varElements in grammarItem.variablesList" class="nano">
-						{{ varElements.character }}</li>
+					<li v-for="varWlr in grammarItem.variablesListWithoutRecursionToLeft" class="nano">
+						{{ varWlr.character }}</li>
 				</ul>
 			</div>
 			<!-- variables [V] -->
@@ -136,8 +136,8 @@
                     <b>T</b>
                 </div>
 				<ul class="unstyled non-bullets">
-					<li v-for="varElements in grammarItem.variablesList" class="nano">
-						{{ varElements.character }}</li>
+					<li v-for="terWlr in grammarItem.terminalsListWithoutRecursionToLeft" class="nano">
+						{{ terWlr.character }}</li>
 				</ul>
 			</div>
 			<!-- terminals [T] -->

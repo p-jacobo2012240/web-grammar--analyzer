@@ -4,10 +4,10 @@ import java.util.List;
 
 public class GrammarItem {
 	/*
-	 * this is the final wrapper 
-	 * that contains the object to 
-	 * show in the frontend made with vue 
-	*/
+	 * this is the final wrapper
+	 * that contains the object to
+	 * show in the frontend made with vue
+	 */
 	private List<RawText> rawTextList;
 	private List<Variables> variablesList;
 	private List<Terminals> terminalsList;
@@ -17,6 +17,10 @@ public class GrammarItem {
 	private List<Variables> terminalsListComplex;
 	// using for fill the raw text without recursion to left
 	private List<RawText> rawTextWithoutRecursionToLeft;
+
+	private List<Variables> variablesListWithoutRecursionToLeft;
+
+	private List<Terminals> terminalsListWithoutRecursionToLeft;
 
 	public List<Variables> getTerminalsListComplex() {
 		return terminalsListComplex;
@@ -54,11 +58,14 @@ public class GrammarItem {
 
 	public GrammarItem() {}
 
-	public GrammarItem(List<Variables> variablesList, List<Terminals> terminalsList, String simpleFalg) {
-		super();
-		this.variablesList = variablesList;
-		this.terminalsList = terminalsList;
-		this.simpleFalg = simpleFalg;
+	public GrammarItem(List<Variables> variablesList, List<Terminals> terminalsList, Boolean isWithRecursion) {
+		if(isWithRecursion) {
+			this.variablesList = variablesList;
+			this.terminalsList = terminalsList;
+		} else {
+			this.variablesListWithoutRecursionToLeft = variablesList;
+			this.terminalsListWithoutRecursionToLeft = terminalsList;
+		}
 	}
 
 	public GrammarItem(List<RawText> rawTextList) {
@@ -78,6 +85,22 @@ public class GrammarItem {
 	}
 	public void setRawTextWithoutLeftRecursion(List<RawText> productions) {
 		this.rawTextWithoutRecursionToLeft = productions;
+	}
+
+	public void setVariablesListWithoutRecursionToLeft(List<Variables> vWithoutRecursion) {
+		this.variablesListWithoutRecursionToLeft = vWithoutRecursion;
+	}
+
+	public List<Variables> getVariablesListWithoutRecursionToLeft() {
+		return this.variablesListWithoutRecursionToLeft;
+	}
+
+	public void setTerminalsListWithoutRecursionToLeft(List<Terminals> tWithoutRecursion) {
+		this.terminalsListWithoutRecursionToLeft = tWithoutRecursion;
+	}
+
+	public List<Terminals> getTerminalsListWithoutRecursionToLeft() {
+		return this.terminalsListWithoutRecursionToLeft;
 	}
 
 }

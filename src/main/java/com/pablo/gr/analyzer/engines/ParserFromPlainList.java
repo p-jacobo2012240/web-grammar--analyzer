@@ -37,6 +37,22 @@ public class ParserFromPlainList {
 	}
 
 	/**
+	 * parse List<RawText> to token string
+	 *
+	 * @param List<Raw>
+	 * @return List<String>
+	 *
+	 */
+	public List<String> fromRawTextListToString(List<RawText> rawList) {
+		List<String> stringPlainText = rawList
+				.stream()
+				.map(rawLine -> rawLine.getLine())
+				.collect(Collectors.toList());
+
+		return stringPlainText;
+	}
+
+	/**
 	 * 
 	 * Validate Vector Vertical Terminals (length ≥ 1) Vector Vertical Variables
 	 * (length ≥ 1)
