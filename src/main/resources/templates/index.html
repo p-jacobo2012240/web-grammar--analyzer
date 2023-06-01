@@ -175,7 +175,7 @@
 			<!--  label without recursion -->
 			<!-- (first function)  -->
 			<div class="variables-list-cnt-ff scroll-y-position">
-				<div class="header-variable-without-recursion d-flex justify-content-center">
+				<div class="header-function d-flex justify-content-center">
 					<b>V</b>
 				</div>
 				<ul class="unstyled non-bullets">
@@ -184,7 +184,7 @@
 				</ul>
 			</div>
 			<div class="terminals-list-cnt-ff scroll-y-position">
-				<div class="header-variable-without-recursion d-flex justify-content-center">
+				<div class="header-function d-flex justify-content-center">
 					<b>Terminales</b>
 				</div>
 				<ul class="unstyled non-bullets">
@@ -199,9 +199,30 @@
 			<!-- title -->
 			<!-- (first function)  -->
 			<!-- (follow function)  -->
-
+			<div class="variables-list-cnt-fn scroll-y-position">
+				<div class="header-function d-flex justify-content-center">
+					<b>V</b>
+				</div>
+				<ul class="unstyled non-bullets">
+					<li v-for="varElementsComplex in grammarItem.variablesListComplex" class="nano">
+						{{  varElementsComplex.character }}</li>
+				</ul>
+			</div>
+			<div class="terminals-list-cnt-fn scroll-y-position">
+				<div class="header-function d-flex justify-content-center">
+					<b>Terminales</b>
+				</div>
+				<ul class="unstyled non-bullets">
+					<li v-for="prodElementsComplex in grammarItem.terminalsListComplex" class="nano">
+						{{  prodElementsComplex.character }}</li>
+				</ul>
+			</div>
+			<!-- title -->
+			<div class="follow-function-label justify-content-center">
+				<p>Función Siguiente</p>
+			</div>
+			<!-- title -->
 			<!-- (follow function)  -->
-
 		</div>
 		<!-- data container  -->
 	</div>

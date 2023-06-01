@@ -62,6 +62,11 @@
 	background-color: rgb(242, 242, 242) !important;
 }
 
+.header-function {
+    height: 30px;
+    background-color: rgb(44, 182, 99) !important
+}
+
 .header-variable-without-recursion {
     height: 30px;
     background-color: rgb(66, 148, 182) !important;
@@ -271,6 +276,36 @@
     position: absolute;
     width: 235px;
     left: 150px;
+    height: 28px;
+    top: 322px;
+}
+
+/** follow function **/
+.variables-list-cnt-fn {
+    position: absolute;
+    width: 95px;
+    left: 339px;
+    height: 198px;
+    top: 347px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
+}
+
+.terminals-list-cnt-fn {
+    position: absolute;
+    width: 140px;
+    left: 434px;
+    height: 198px;
+    top: 347px;
+    border-style: solid;
+    border-color: rgb(242, 242, 242);
+}
+
+.follow-function-label {
+    height: 30px;
+    position: absolute;
+    width: 235px;
+    left: 388px;
     height: 28px;
     top: 322px;
 }
