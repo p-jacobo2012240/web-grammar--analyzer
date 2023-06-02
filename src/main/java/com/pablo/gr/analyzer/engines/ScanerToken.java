@@ -82,7 +82,7 @@ public class ScanerToken {
 		return this.objByToken;
 	}
 
-	public GrammarItem buildVariablesAndProductions(List<String> fileStruct) {
+	public GrammarItem buildVariablesAndProductions(List<String> fileStruct, Boolean isWithRecursion ) {
 		/**
 		 * Important Note for the time in the UI show the second part of object like
 		 * UI -> setVariablesListComplex =  Var
@@ -123,8 +123,14 @@ public class ScanerToken {
 			terminalsOfProductionList.add(newProduction);
 		}
 
-		grammarItemLists.setVariablesListComplex(variablesOfProductionList);
-		grammarItemLists.setTerminalsListComplex(terminalsOfProductionList);
+		if(isWithRecursion) {
+			grammarItemLists.setVariablesListComplex(variablesOfProductionList);
+			grammarItemLists.setTerminalsListComplex(terminalsOfProductionList);
+		} else {
+			grammarItemLists.setVariablesListComplexWithoutRecursionToLeft(variablesOfProductionList);
+			grammarItemLists.setTerminalsListComplexWithoutRecursionToLeft(terminalsOfProductionList);
+		}
+
 		return grammarItemLists;
 	}
 

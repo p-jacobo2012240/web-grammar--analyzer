@@ -22,6 +22,10 @@ public class GrammarItem {
 
 	private List<Terminals> terminalsListWithoutRecursionToLeft;
 
+	private List<Variables> variablesListComplexWithoutRecursionToLeft;
+
+	private List<Variables> terminalsListComplexWithoutRecursionToLeft;
+
 	public List<Variables> getTerminalsListComplex() {
 		return terminalsListComplex;
 	}
@@ -101,6 +105,22 @@ public class GrammarItem {
 
 	public List<Terminals> getTerminalsListWithoutRecursionToLeft() {
 		return this.terminalsListWithoutRecursionToLeft;
+	}
+
+	public void setVariablesListComplexWithoutRecursionToLeft(List<Variables> vProductionsWithoutRecursion) {
+		this.variablesListComplexWithoutRecursionToLeft = vProductionsWithoutRecursion;
+	}
+
+	public  List<Variables> getVariablesListComplexWithoutRecursionToLeft() {
+		return this.variablesListComplexWithoutRecursionToLeft;
+	}
+
+	public void setTerminalsListComplexWithoutRecursionToLeft(List<Variables> tProductionWithoutRecursion) {
+		this.terminalsListComplexWithoutRecursionToLeft = tProductionWithoutRecursion;
+	}
+
+	public List<Variables> getTerminalsListComplexWithoutRecursionToLeft() {
+		return terminalsListComplexWithoutRecursionToLeft;
 	}
 
 }

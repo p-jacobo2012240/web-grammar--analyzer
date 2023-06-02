@@ -48,7 +48,7 @@ public class MainEngine {
 
 		GrammarItem variablesAndProductions = ScanerToken
 				.getInstance()
-				.buildVariablesAndProductions(fileStruct);
+				.buildVariablesAndProductions(fileStruct, true );
 
 		grammarItem.setVariablesListComplex(variablesAndProductions.getVariablesListComplex());
 		grammarItem.setTerminalsListComplex(variablesAndProductions.getTerminalsListComplex());
@@ -81,6 +81,24 @@ public class MainEngine {
 				.getVariablesListWithoutRecursionToLeft());
 		grammarItem.setTerminalsListWithoutRecursionToLeft(
 				listVariablesAndTerminals.getTerminalsList());
+
+
+		/**
+		 * assignment of variables and terminals
+		 * whithout recursion to left
+		 * identified as [Var, Produc] in UI
+		 * */
+
+		GrammarItem variablesAndProductionsWlr = skToken
+				.buildVariablesAndProductions(ParserFromPlainList
+						.getInstance()
+						.fromRawTextListToString(grammarItem.getRawTextWithoutLeftRecursion()), false );
+
+		grammarItem.setVariablesListComplexWithoutRecursionToLeft(variablesAndProductionsWlr
+				.getVariablesListComplexWithoutRecursionToLeft());
+		grammarItem.setTerminalsListComplexWithoutRecursionToLeft(variablesAndProductionsWlr
+				.getTerminalsListComplexWithoutRecursionToLeft());
+
 
 		return grammarItem;
 	}
