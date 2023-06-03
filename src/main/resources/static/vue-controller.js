@@ -10,7 +10,9 @@ let defaultProps = {
 	variablesListComplexWithoutRecursionToLeft: [{ character: '' }],
     terminalsListComplexWithoutRecursionToLeft: [{ character: '' }],
     variableFirstFunctionList: [{ character: '' }],
-    variableFollowFunctionList: [{ character: '' }]
+    variableFollowFunctionList: [{ character: '' }],
+    terminalFirstFunctionList: [{ character: '' }],
+    terminalFollowFunctionList: [{ character: '' }]
 };
 
 const app = new Vue({

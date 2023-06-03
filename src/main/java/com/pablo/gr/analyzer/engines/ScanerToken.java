@@ -141,46 +141,57 @@ public class ScanerToken {
 				.fromStringToRawTextList(modifiedProductions);
 	}
 
-	public void generateFirstAndFollowFunction(List<String> fileStructWithOutRecursion) {
+	public GrammarItem generateFirstAndFollowFunction(List<String> fileStructWithOutRecursion) {
 		Map<String, List<List<String>>> productions = new HashMap<>();
-		productions.put("S", Arrays.asList(
-				Arrays.asList("T", "S'")
-		));
-		productions.put("S'", Arrays.asList(
-				Arrays.asList("+", "T", "S'"),
-				Arrays.asList()
-		));
-		productions.put("T", Arrays.asList(
-				Arrays.asList("F", "T'")
-		));
-		productions.put("T'", Arrays.asList(
-				Arrays.asList("*", "F", "T'"),
-				Arrays.asList()
-		));
-		productions.put("F", Arrays.asList(
-				Arrays.asList("a"),
-				Arrays.asList("(", "S", ")")
-		));
+		GrammarItem grammarItem = new GrammarItem();
 
-		// Crear una instancia del generador
+		for (String production : fileStructWithOutRecursion) {
+			String[] parts = production.split("=");
+
+			String nonTerminal = parts[0].trim();
+			List<String> productionRules = Arrays.asList(parts[1].trim().split("\\|"));
+
+			List<List<String>> rules = new ArrayList<>();
+			for (String rule : productionRules) {
+				List<String> symbols = Arrays.asList(rule.trim().split("\\s+"));
+
+				// remove double quotation marks
+				symbols = symbols.stream()
+						.map(symbol -> symbol.replaceAll("'", "").trim())
+						.collect(Collectors.toList());
+
+				rules.add(symbols);
+			}
+
+			productions.put(nonTerminal, rules);
+		}
+
 		FirstFollowGenerator generator = new FirstFollowGenerator(productions);
 
-		// Generar la función "primera" (first function)
 		Map<String, Set<String>> first = generator.generateFirst();
-		System.out.println("Primera (First) función:");
+		System.out.println(" First Function:");
+		List<Terminals> tempFirstFunctionTerminals =  new ArrayList<>();
 		for (String nonTerminal : first.keySet()) {
-			System.out.println("First(" + nonTerminal + ") = " + first.get(nonTerminal));
+			System.out.println("P( " + nonTerminal + " ) = " + first.get(nonTerminal));
+			Terminals t = new Terminals("{ " + first.get(nonTerminal).toString().replaceAll("\\[|\\]", "") + " }" );
+			tempFirstFunctionTerminals.add(t);
 		}
+		grammarItem.setTerminalFirstFunctionList(tempFirstFunctionTerminals);
 
-		System.out.println();
-
-		// Generar la función "siguiente" (follow function)
-		String startSymbol = "S"; // Símbolo inicial de la gramática
+		String startSymbol = productions.keySet().iterator().next();
+		System.out.println("startSymbol = " + startSymbol);
 		Map<String, Set<String>> follow = generator.generateFollow(startSymbol);
-		System.out.println("Siguiente (Follow) función:");
+
+		System.out.println("Follow Function:");
+		List<Terminals> tempFollowFunctionTerminals =  new ArrayList<>();
 		for (String nonTerminal : follow.keySet()) {
-			System.out.println("Follow(" + nonTerminal + ") = " + follow.get(nonTerminal));
+			System.out.println("Sig( " + nonTerminal + " ) = " + follow.get(nonTerminal));
+			Terminals t = new Terminals( "{ " + follow.get(nonTerminal).toString().replaceAll("\\[|\\]", "") + " }" );
+			tempFollowFunctionTerminals.add(t);
 		}
+		grammarItem.setTerminalFollowFunctionList(tempFollowFunctionTerminals);
+
+		return grammarItem;
 	}
 
 	public GrammarItem  parseToFirstFunctionType(List<Variables> variableList, Boolean isFirstFunction ) {

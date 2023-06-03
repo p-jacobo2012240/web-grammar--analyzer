@@ -104,9 +104,17 @@ public class MainEngine {
 		 * and follow function
 		 * **/
 
-		ScanerToken.getInstance().generateFirstAndFollowFunction(ParserFromPlainList
+		GrammarItem terminalsFirstAndFollowFunctionList = ScanerToken
+				.getInstance()
+				.generateFirstAndFollowFunction(ParserFromPlainList
 				.getInstance()
 				.fromRawTextListToString(grammarItem.getRawTextWithoutLeftRecursion()));
+
+
+		// set terminals of first and follow function
+		grammarItem.setTerminalFirstFunctionList(terminalsFirstAndFollowFunctionList.getTerminalFirstFunctionList());
+		grammarItem.setTerminalFollowFunctionList(terminalsFirstAndFollowFunctionList.getTerminalFollowFunctionList());
+
 
 		// set variables list for first function and follow function
 		GrammarItem vFirstFunction = ScanerToken

@@ -34,6 +34,10 @@ public class GrammarItem {
 
 	private List<Variables> variableFollowFunctionList;
 
+	private List<Terminals> terminalFirstFunctionList;
+
+	private List<Terminals> terminalFollowFunctionList;
+
 
 	public void setTerminalsListComplex(List<Variables> terminalsListComplex) {
 		this.terminalsListComplex = terminalsListComplex;
@@ -141,5 +145,21 @@ public class GrammarItem {
 
 	public List<Variables> getVariableFollowFunctionList() {
 		return this.variableFollowFunctionList;
+	}
+
+	public void setTerminalFirstFunctionList(List<Terminals> tFirstFunctionList) {
+		this.terminalFirstFunctionList = tFirstFunctionList;
+	}
+
+	public List<Terminals> getTerminalFirstFunctionList() {
+		return this.terminalFirstFunctionList;
+	}
+
+	public void setTerminalFollowFunctionList(List<Terminals> tFollowFunctionList) {
+		this.terminalFollowFunctionList = tFollowFunctionList;
+	}
+
+	public List<Terminals> getTerminalFollowFunctionList() {
+		return this.terminalFollowFunctionList;
 	}
 }

@@ -188,8 +188,8 @@
 					<b>Terminales</b>
 				</div>
 				<ul class="unstyled non-bullets">
-					<li v-for="prodElementsComplex in grammarItem.terminalsListComplex" class="nano">
-						{{  prodElementsComplex.character }}</li>
+					<li v-for="tFirstFunc in grammarItem.terminalFirstFunctionList" class="nano">
+						{{  tFirstFunc.character }}</li>
 				</ul>
 			</div>
 			<!-- title -->
@@ -213,8 +213,8 @@
 					<b>Terminales</b>
 				</div>
 				<ul class="unstyled non-bullets">
-					<li v-for="prodElementsComplex in grammarItem.terminalsListComplex" class="nano">
-						{{  prodElementsComplex.character }}</li>
+					<li v-for="tFollowtFunc in grammarItem.terminalFollowFunctionList" class="nano">
+						{{  tFollowtFunc.character }}</li>
 				</ul>
 			</div>
 			<!-- title -->
