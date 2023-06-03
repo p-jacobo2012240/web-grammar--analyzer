@@ -8,7 +8,9 @@ let defaultProps = {
 	rawTextWithoutRecursionToLeft: [{ line: '' }],
 	terminalsListWithoutRecursionToLeft: [{ line: '' }],
 	variablesListComplexWithoutRecursionToLeft: [{ character: '' }],
-    terminalsListComplexWithoutRecursionToLeft: [{ character: '' }]
+    terminalsListComplexWithoutRecursionToLeft: [{ character: '' }],
+    variableFirstFunctionList: [{ character: '' }],
+    variableFollowFunctionList: [{ character: '' }]
 };
 
 const app = new Vue({

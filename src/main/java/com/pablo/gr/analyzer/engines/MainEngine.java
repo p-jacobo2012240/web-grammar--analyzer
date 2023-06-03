@@ -104,7 +104,24 @@ public class MainEngine {
 		 * and follow function
 		 * **/
 
-		ScanerToken.getInstance().generateFirstAndFollowFunction();
+		ScanerToken.getInstance().generateFirstAndFollowFunction(ParserFromPlainList
+				.getInstance()
+				.fromRawTextListToString(grammarItem.getRawTextWithoutLeftRecursion()));
+
+		// set variables list for first function and follow function
+		GrammarItem vFirstFunction = ScanerToken
+				.getInstance()
+				.parseToFirstFunctionType(variablesAndTerminalsWithoutRecursionFromLeft
+						.getVariablesListWithoutRecursionToLeft(), true);
+
+		GrammarItem vFollowFunction =  ScanerToken
+				.getInstance()
+				.parseToFirstFunctionType(variablesAndTerminalsWithoutRecursionFromLeft
+						.getVariablesListWithoutRecursionToLeft(), false);
+
+		grammarItem.setVariableFirstFunctionList(vFirstFunction.getVariableFirstFunctionList());
+		grammarItem.setVariableFollowFunctionList(vFollowFunction.getVariableFollowFunctionList());
+
 
 		return grammarItem;
 	}

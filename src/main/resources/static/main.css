@@ -18,7 +18,6 @@
 	overflow-y: scroll;
 }
 
-
 .cnt-message {
 	height: 25px;
 	background-color: rgb(242, 242, 242) !important;
@@ -283,7 +282,7 @@
 /** follow function **/
 .variables-list-cnt-fn {
     position: absolute;
-    width: 95px;
+    width: 115px;
     left: 339px;
     height: 198px;
     top: 347px;
@@ -294,7 +293,7 @@
 .terminals-list-cnt-fn {
     position: absolute;
     width: 140px;
-    left: 434px;
+    left: 450px;
     height: 198px;
     top: 347px;
     border-style: solid;

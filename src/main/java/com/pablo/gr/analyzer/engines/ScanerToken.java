@@ -141,8 +141,67 @@ public class ScanerToken {
 				.fromStringToRawTextList(modifiedProductions);
 	}
 
-	public void generateFirstAndFollowFunction() {
-		
+	public void generateFirstAndFollowFunction(List<String> fileStructWithOutRecursion) {
+		Map<String, List<List<String>>> productions = new HashMap<>();
+		productions.put("S", Arrays.asList(
+				Arrays.asList("T", "S'")
+		));
+		productions.put("S'", Arrays.asList(
+				Arrays.asList("+", "T", "S'"),
+				Arrays.asList()
+		));
+		productions.put("T", Arrays.asList(
+				Arrays.asList("F", "T'")
+		));
+		productions.put("T'", Arrays.asList(
+				Arrays.asList("*", "F", "T'"),
+				Arrays.asList()
+		));
+		productions.put("F", Arrays.asList(
+				Arrays.asList("a"),
+				Arrays.asList("(", "S", ")")
+		));
+
+		// Crear una instancia del generador
+		FirstFollowGenerator generator = new FirstFollowGenerator(productions);
+
+		// Generar la función "primera" (first function)
+		Map<String, Set<String>> first = generator.generateFirst();
+		System.out.println("Primera (First) función:");
+		for (String nonTerminal : first.keySet()) {
+			System.out.println("First(" + nonTerminal + ") = " + first.get(nonTerminal));
+		}
+
+		System.out.println();
+
+		// Generar la función "siguiente" (follow function)
+		String startSymbol = "S"; // Símbolo inicial de la gramática
+		Map<String, Set<String>> follow = generator.generateFollow(startSymbol);
+		System.out.println("Siguiente (Follow) función:");
+		for (String nonTerminal : follow.keySet()) {
+			System.out.println("Follow(" + nonTerminal + ") = " + follow.get(nonTerminal));
+		}
+	}
+
+	public GrammarItem  parseToFirstFunctionType(List<Variables> variableList, Boolean isFirstFunction ) {
+		GrammarItem grammarItem = new GrammarItem();
+		if(isFirstFunction) {
+			List<Variables> firstFunctionList = new ArrayList<>();
+			for(Variables v: variableList) {
+				Variables temp = new Variables("P( "+ v.getCharacter() + ")");
+				firstFunctionList.add(temp);
+			}
+			grammarItem.setVariableFirstFunctionList(firstFunctionList);
+		} else {
+			List<Variables> followFunctionList = new ArrayList<>();
+			for(Variables vf: variableList) {
+				Variables tempFollow = new Variables("Sig( "+ vf.getCharacter() + ")");
+				followFunctionList.add(tempFollow);
+			}
+			grammarItem.setVariableFollowFunctionList(followFunctionList);
+		}
+
+		return grammarItem;
 	}
 
 	public List<String> removeLeftRecursion(List<String> productions) {

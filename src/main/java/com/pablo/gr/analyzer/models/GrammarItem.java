@@ -30,6 +30,10 @@ public class GrammarItem {
 		return terminalsListComplex;
 	}
 
+	private List<Variables> variableFirstFunctionList;
+
+	private List<Variables> variableFollowFunctionList;
+
 
 	public void setTerminalsListComplex(List<Variables> terminalsListComplex) {
 		this.terminalsListComplex = terminalsListComplex;
@@ -123,4 +127,19 @@ public class GrammarItem {
 		return terminalsListComplexWithoutRecursionToLeft;
 	}
 
+	public void setVariableFirstFunctionList(List<Variables> vFirstFunctionList) {
+		this.variableFirstFunctionList = vFirstFunctionList;
+	}
+
+	public  List<Variables> getVariableFirstFunctionList() {
+		return this.variableFirstFunctionList;
+	}
+
+	public void setVariableFollowFunctionList(List<Variables> vFollowFunctionList) {
+		this.variableFollowFunctionList = vFollowFunctionList;
+	}
+
+	public List<Variables> getVariableFollowFunctionList() {
+		return this.variableFollowFunctionList;
+	}
 }
