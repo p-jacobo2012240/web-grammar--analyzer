@@ -99,6 +99,12 @@ public class MainEngine {
 		grammarItem.setTerminalsListComplexWithoutRecursionToLeft(variablesAndProductionsWlr
 				.getTerminalsListComplexWithoutRecursionToLeft());
 
+		/**
+		 * Generation of function first
+		 * and follow function
+		 * **/
+
+		ScanerToken.getInstance().generateFirstAndFollowFunction();
 
 		return grammarItem;
 	}

@@ -141,6 +141,10 @@ public class ScanerToken {
 				.fromStringToRawTextList(modifiedProductions);
 	}
 
+	public void generateFirstAndFollowFunction() {
+		
+	}
+
 	public List<String> removeLeftRecursion(List<String> productions) {
 		List<String> modifiedProductions = new ArrayList<>();
 
